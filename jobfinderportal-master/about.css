@@ -1,0 +1,77 @@
+.What_we_are_doing{
+    transform: translateX(-400%);
+    transition:  transform 1.0s ease;
+}
+.What_we_are_doing.show
+{
+    transform: translateX(0);
+    
+}
+.Talented_people_are_getting_Jobs
+{
+    transform: translateX(-400%);
+    transition:  transform 1.0s ease;
+}
+.Talented_people_are_getting_Jobs.show
+{
+    transform: translateX(0);
+}
+.spimg
+{
+    transform: translateX(400%);
+    transition:  transform 1.0s ease;
+}
+.spimg.show
+{
+    transform: translateX(0);
+}
+.shortpara
+{
+    transform: translateX(-400%);
+    transition:  transform 1.0s ease;
+}
+.shortpara.show
+{
+    transform: translateX(0);
+    
+}
+.longpara
+{
+    transform: translateX(-400%);
+    transition:  transform 1.0s ease;
+}
+.longpara.show
+{
+    transform: translateX(0);
+    
+}
+.since
+{
+    transform: translateX(400%);
+    transition:  transform 1.0s ease;
+}
+.since.show
+{
+    transform: translateX(0);
+    
+}
+.one
+{
+    transform: translateX(400%);
+    transition:  transform 0.1s ease;
+}
+.one.show
+{
+    transform: translateX(0);
+    
+}
+.button
+{
+    transform: translateX(-400%);
+    transition:  transform 1.0s ease;
+}
+.button.show
+{
+    transform: translateX(0);
+    
+}
