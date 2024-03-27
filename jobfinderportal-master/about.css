@@ -66,11 +66,52 @@
     
 }
 .button
-{
+{   border-radius: 50px;
     transform: translateX(-400%);
     transition:  transform 1.0s ease;
 }
 .button.show
+{
+    transform: translateX(0);
+    
+    
+}
+.Our_latest_blog
+{
+    transform: translateX(-400%);
+    transition:  transform 1.0s ease;
+}
+.Our_latest_blog.show
+{
+    transform: translateX(0);
+    
+}
+.Our_recent_news
+{
+    transform: translateX(-400%);
+    transition:  transform 1.0s ease;
+}
+.Our_recent_news.show
+{
+    transform: translateX(0);
+    
+}
+.blog1
+{
+    transform: translateX(-400%);
+    transition:  transform 1.0s ease;
+}
+.blog1.show
+{
+    transform: translateX(0);
+    
+}
+.blog2
+{
+    transform: translateX(400%);
+    transition:  transform 1.0s ease;
+}
+.blog2.show
 {
     transform: translateX(0);
     
