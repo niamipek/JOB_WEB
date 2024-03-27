@@ -69,14 +69,12 @@
                                                 </ul>
                                             </li>
                                             <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="loginform.html">Login / Register</a></li>
                                         </ul>
                                     </nav>
                                 </div>
                                 <!-- Header-btn -->
-                                <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="#" class="btn head-btn1">Register</a>
-                                    <a href="#" class="btn head-btn2">Login</a>
-                                </div>
+                                
                             </div>
                         </div>
                         <!-- Mobile Menu -->
@@ -269,8 +267,7 @@
                             </div>
                             <div class="process-cap">
                                 <h5>1. Search a job</h5>
-                                <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut
-                                    laborea.</p>
+                                <p>Finding the right job is like finding a puzzle piece to complete your career. Let's search together.</p>
                             </div>
                         </div>
                     </div>
@@ -281,8 +278,7 @@
                             </div>
                             <div class="process-cap">
                                 <h5>2. Apply for job</h5>
-                                <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut
-                                    laborea.</p>
+                                <p>Ready to take the next step in your career? Apply now and let your journey begin.</p>
                             </div>
                         </div>
                     </div>
@@ -293,8 +289,7 @@
                             </div>
                             <div class="process-cap">
                                 <h5>3. Get your job</h5>
-                                <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut
-                                    laborea.</p>
+                                <p>Your dream job won't come knocking on your door. You have to go out and get it. Start by sending in your CV.</p>
                             </div>
                         </div>
                     </div>
@@ -322,9 +317,7 @@
                                         </div>
                                     </div>
                                     <div class="testimonial-top-cap">
-                                        <p>“I am at an age where I just want to be fit and healthy our bodies are our
-                                            responsibility! So start caring for your body and it will care for you. Eat
-                                            clean it will care for you and workout hard.”</p>
+                                        <p>“Don't wait for the perfect opportunity. Create it by submitting your CV today.”</p>
                                     </div>
                                 </div>
                             </div>
@@ -341,9 +334,7 @@
                                         </div>
                                     </div>
                                     <div class="testimonial-top-cap">
-                                        <p>“I am at an age where I just want to be fit and healthy our bodies are our
-                                            responsibility! So start caring for your body and it will care for you. Eat
-                                            clean it will care for you and workout hard.”</p>
+                                        <p>“Every CV submitted is a step closer to your dream job. Take that step today.”</p>
                                     </div>
                                 </div>
                             </div>
@@ -395,15 +386,51 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle text-center">
-                            <span>Our latest blog</span>
-                            <h2>Our recent news</h2>
+                            <span class="Our_latest_blog">Our latest blog</span>
+                            <script>
+
+                                const class_of_Our_latest_blog = document.querySelector('.Our_latest_blog');
+
+                                const checkOur_latest_blog = () => {
+                                    const triggerBottom = window.innerHeight / 5 * 4;
+                                    const position_of_Our_latest_blog= class_of_Our_latest_blog.getBoundingClientRect().top;
+                                    if (position_of_Our_latest_blog < triggerBottom) {
+                                        class_of_Our_latest_blog.classList.add('show');
+                                    } else {
+                                        class_of_Our_latest_blog.classList.remove('show');
+                                    }
+                                }
+
+                                window.addEventListener('scroll', checkOur_latest_blog);
+                                checkOur_latest_blog();
+
+                            </script>
+                            <h2 class="Our_recent_news">Our recent news</h2>
+                            <script>
+
+                                const class_of_Our_recent_news = document.querySelector('.Our_recent_news');
+
+                                const checkOur_recent_news = () => {
+                                    const triggerBottom = window.innerHeight / 5 * 4;
+                                    const position_of_Our_recent_news= class_of_Our_recent_news.getBoundingClientRect().top;
+                                    if (position_of_Our_recent_news < triggerBottom) {
+                                        class_of_Our_recent_news.classList.add('show');
+                                    } else {
+                                        class_of_Our_recent_news.classList.remove('show');
+                                    }
+                                }
+
+                                window.addEventListener('scroll', checkOur_recent_news);
+                                checkOur_recent_news();
+
+                            </script>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6">
                         <div class="home-blog-single mb-30">
-                            <div class="blog-img-cap">
+                            <div class="blog-img-cap blog1">
                                 <div class="blog-img">
                                     <img src="assets/img/blog/home-blog1.jpg" alt="">
                                     <!-- Blog date -->
@@ -417,13 +444,31 @@
                                     <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a>
                                     </h3>
                                     <a href="#" class="more-btn">Read more »</a>
+                                    <script>
+
+                                        const class_of_blog1 = document.querySelector('.blog1');
+        
+                                        const checkBlog1 = () => {
+                                            const triggerBottom = window.innerHeight / 5 * 4;
+                                            const position_of_blog1= class_of_blog1.getBoundingClientRect().top;
+                                            if (position_of_blog1 < triggerBottom) {
+                                                class_of_blog1.classList.add('show');
+                                            } else {
+                                                class_of_blog1.classList.remove('show');
+                                            }
+                                        }
+        
+                                        window.addEventListener('scroll', checkBlog1);
+                                        checkBlog1();
+        
+                                    </script>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6">
                         <div class="home-blog-single mb-30">
-                            <div class="blog-img-cap">
+                            <div class="blog-img-cap blog2">
                                 <div class="blog-img">
                                     <img src="assets/img/blog/home-blog2.jpg" alt="">
                                     <!-- Blog date -->
@@ -438,6 +483,24 @@
                                     </h3>
                                     <a href="#" class="more-btn">Read more »</a>
                                 </div>
+                                <script>
+
+                                    const class_of_blog2 = document.querySelector('.blog2');
+    
+                                    const checkBlog2 = () => {
+                                        const triggerBottom = window.innerHeight / 5 * 4;
+                                        const position_of_blog2= class_of_blog2.getBoundingClientRect().top;
+                                        if (position_of_blog2 < triggerBottom) {
+                                            class_of_blog2.classList.add('show');
+                                        } else {
+                                            class_of_blog2.classList.remove('show');
+                                        }
+                                    }
+    
+                                    window.addEventListener('scroll', checkBlog2);
+                                    checkBlog2();
+    
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -458,8 +521,7 @@
                                 <div class="footer-tittle">
                                     <h4>About Us</h4>
                                     <div class="footer-pera">
-                                        <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so
-                                            behold.</p>
+                                        <p>We are a job search platform committed to creating limitless opportunities for both job seekers and employers.</p>
                                     </div>
                                 </div>
                             </div>
@@ -472,11 +534,10 @@
                                 <h4>Contact Info</h4>
                                 <ul>
                                     <li>
-                                        <p>Address :Your address goes
-                                            here, your demo address.</p>
+                                        <p>Address :TDTU</p>
                                     </li>
-                                    <li><a href="#">Phone : +8880 44338899</a></li>
-                                    <li><a href="#">Email : info@colorlib.com</a></li>
+                                    <li> Phone : 0903614098</li>
+                                    <li> Email:522H0078@student.tdtu.edu.vn</li>
                                 </ul>
                             </div>
 
@@ -499,25 +560,14 @@
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Newsletter</h4>
-                                <div class="footer-pera footer-pera2">
-                                    <p>Heaven fruitful doesn't over lesser in days. Appear creeping.</p>
-                                </div>
+                                
                                 <!-- Form -->
                                 <div class="footer-form">
                                     <div id="mc_embed_signup">
                                         <form target="_blank"
                                             action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
                                             method="get" class="subscribe_form relative mail_part">
-                                            <input type="email" name="email" id="newsletter-form-email"
-                                                placeholder="Email Address" class="placeholder hide-on-focus"
-                                                onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = ' Email Address '">
-                                            <div class="form-icon">
-                                                <button type="submit" name="submit" id="newsletter-submit"
-                                                    class="email_icon newsletter-submit button-contactForm"><img
-                                                        src="assets/img/icon/form.png" alt=""></button>
-                                            </div>
+                                            <h4>Company</h4>    
                                             <div class="mt-10 info"></div>
                                         </form>
                                     </div>
