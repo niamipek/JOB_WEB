@@ -10,19 +10,34 @@ $user = '';
 $pass = '';
 $error = '';
 
-if (isset($_POST['user']) && isset($_POST['pass'])) {
-  $user = $_POST['user'];
-  $pass = $_POST['pass'];
 
-  if (empty($user)) {
-    $error = 'Please enter your user name';
-  } else if (empty($pass)) {
-    $error = 'Please enter your password';
-  } else if ($user !== 'admin@gmail.com' || $pass !== '123456') {
-    $error = 'Invalid username or password';
-  } else {
-    $_SESSION['user'] = $user;
-    header('Location: index.php');
+$conn = new mysqli('localhost', 'root', '', 'job_website');
+if ($conn->connect_error) {
+  die("Connection Failed : " . $conn->connect_error);
+} else {
+
+
+  if (isset($_POST['user']) && isset($_POST['pass'])) {
+    $user = $_POST['user'];
+    $pass = $_POST['pass'];
+
+    $stmt = $conn->prepare("SELECT * FROM user WHERE uemail = ? AND upassword = ?");
+    $stmt->bind_param("ss", $user, $pass);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if (empty($user)) {
+      $error = 'Please enter your user name';
+    } else if (empty($pass)) {
+      $error = 'Please enter your password';
+    } else if ($result->num_rows <= 0) {
+      $error = 'Invalid username or password';
+    } else if ($result->num_rows > 0) {
+      $_SESSION['user'] = $user;
+      header('Location: index.php');
+    }
+    $stmt->close();
+    $conn->close();
   }
 }
 ?>
@@ -62,19 +77,20 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
             <div class="input-boxes">
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
-                <input name="user" value="<?= $user ?>" id="useremail" type="email" placeholder="Enter your email"/>
+                <input name="user" value="<?= $user ?>" id="useremail" type="email" placeholder="Enter your email" />
               </div>
               <div class="input-box">
                 <i class="fas fa-lock"></i>
-                <input name="pass" value="<?= $pass ?>" id="password" type="password" placeholder="Enter your password"/>
+                <input name="pass" value="<?= $pass ?>" id="password" type="password"
+                  placeholder="Enter your password" />
               </div>
               <div class="input-box">
-                
+
                 <?php
                 if (!empty($error)) {
-                            echo "<div style='color: red' class='alert alert-danger'>$error</div>";
-                        }
-                        ?>
+                  echo "<div style='color: red' class='alert alert-danger'>$error</div>";
+                }
+                ?>
               </div>
               <div class="button input-box">
                 <input type="submit" value="Sumbit" />
@@ -87,19 +103,19 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
         </div>
         <div class="signup-form">
           <div class="title">Sign Up</div>
-          <form action="#">
+          <form action="register.php" method="post">
             <div class="input-boxes">
               <div class="input-box">
                 <i class="fas fa-user"></i>
-                <input type="text" placeholder="Enter your name" required />
+                <input id="uname" name="uname" type="text" placeholder="Enter your name" required />
               </div>
               <div class="input-box">
                 <i class="fas fa-envelope"></i>
-                <input type="email" placeholder="Enter your email" required />
+                <input id="uemail" name="uemail" type="email" placeholder="Enter your email" required />
               </div>
               <div class="input-box">
                 <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Enter your password" required />
+                <input id="upassword" name="upassword" type="password" placeholder="Enter your password" required />
               </div>
               <div class="button input-box">
                 <input type="submit" value="Sumbit" />
