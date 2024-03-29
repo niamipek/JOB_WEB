@@ -48,7 +48,7 @@
                         <div class="col-lg-3 col-md-2">
                             <!-- Logo -->
                             <div class="logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href="index.php"><img src="assets/img/logo/logo.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-9">
@@ -57,19 +57,34 @@
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="job_listing.html">Find a Jobs </a></li>
-                                            <li><a href="about.html">About</a></li>
+                                            <li><a href="index.php">Home</a></li>
+                                            <li><a href="job_listing.php">Find a Jobs </a></li>
+                                            <li><a href="about.php">About</a></li>
                                             <li><a href="#">Page</a>
                                                 <ul class="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="single-blog.html">Blog Details</a></li>
-                                                    <li><a href="elements.html">Elements</a></li>
-                                                    <li><a href="job_details.html">job Details</a></li>
+                                                    <li><a href="blog.php">Blog</a></li>
+                                                    <li><a href="single-blog.php">Blog Details</a></li>
+                                                    <li><a href="elements.php">Elements</a></li>
+                                                    <li><a href="job_details.php">job Details</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="loginform.html">Login / Register</a></li>
+                                            <li><a href="contact.php">Contact</a></li>
+                                            <?php
+                                            session_start();
+
+                                            if (isset($_SESSION['user'])) {
+                                                $html = '<li id="login"><a href="#"><img width=30px height=30px src="Doc\img\user (1).png" alt="User Information"></a>
+                                                    <ul class="submenu">
+                                                        <li><a href="#">Manage Profile</a></li>
+                                                        <li id="login"><a href="logout.php">Logout</a></li>
+                                                    </ul>
+                                                </li>';
+                                                // In ra kết quả
+                                                echo $html;
+                                            }else{
+                                                echo '<li id="login"><a href="loginform.php">Login / Register</a></li>';
+                                            }
+                                            ?>
                                         </ul>
                                     </nav>
                                 </div>
@@ -179,7 +194,7 @@
                                         window.addEventListener('scroll', checkShortpara);
                                         checkShortpara();
                                    </script>
-                                <a href="formpostajob.html" class="btn post-btn button">Post a job</a>
+                                <a href="formpostajob.php" class="btn post-btn button">Post a job</a>
                                 <script>
                                     const class_of_button = document.querySelector('.button');
                                     const checkButton = () => {
@@ -441,7 +456,7 @@
                                 </div>
                                 <div class="blog-cap">
                                     <p>| Properties</p>
-                                    <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a>
+                                    <h3><a href="single-blog.php">Footprints in Time is perfect House in Kurashiki</a>
                                     </h3>
                                     <a href="#" class="more-btn">Read more »</a>
                                     <script>
@@ -479,7 +494,7 @@
                                 </div>
                                 <div class="blog-cap">
                                     <p>| Properties</p>
-                                    <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a>
+                                    <h3><a href="single-blog.php">Footprints in Time is perfect House in Kurashiki</a>
                                     </h3>
                                     <a href="#" class="more-btn">Read more »</a>
                                 </div>
@@ -581,7 +596,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <!-- logo -->
                         <div class="footer-logo mb-20">
-                            <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                            <a href="index.php"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
