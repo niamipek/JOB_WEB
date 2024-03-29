@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="contactstyle.css">
-    
+
 </head>
 
 <body>
@@ -73,7 +73,7 @@
                                             <li><a href="loginform.html">Login / Register</a></li>
                                         </ul>
                                     </nav>
-                                </div>          
+                                </div>
                             </div>
                         </div>
                         <!-- Mobile Menu -->
@@ -103,86 +103,103 @@
     </div>
     <!-- Hero Area End -->
     <!-- ================ contact section start ================= -->
-    
-        
+
+
     <main class="cd__main">
         <!-- Start DEMO HTML (Use the following code into your project)-->
         <section>
-   
-   <div class="section-header">
-     <div class="container">
-       <h2>Please give me your details</h2>
-       <p>we value our partnership and aim to provide you with the best service possible. Please contact us so that we can efficiently upgrade and maintain your system.</p>
-     </div>
-   </div>
-   
-   <div class="container">
-     <div class="row">
-       
-       <div class="contact-info">
-         <div class="contact-info-item">
-           <div class="contact-info-icon">
-             <i class="fas fa-home"></i>
-           </div>
-           
-           <div class="contact-info-content">
-             <h4>Address</h4>
-             <p> 19 Nguyễn Hữu Thọ, Phường Tân Phong, Quận 7, TP. Hồ Chí Minh</p>
-           </div>
-         </div>
-         
-         <div class="contact-info-item">
-           <div class="contact-info-icon">
-             <i class="fas fa-phone"></i>
-           </div>
-           
-           <div class="contact-info-content">
-             <h4>Phone</h4>
-             <p>0903614098</p>
-           </div>
-         </div>
-         
-         <div class="contact-info-item">
-           <div class="contact-info-icon">
-             <i class="fas fa-envelope"></i>
-           </div>
-           
-           <div class="contact-info-content">
-             <h4>Email</h4>
-            <p>522H0078@student.tdtu.edu.vn</p>
-           </div>
-         </div>
-       </div>
-       
-       <div class="contact-form">
-         <form action="" id="contact-form">
-           <h2>Send Message</h2>
-           <div class="input-box">
-             <input type="text" required="true" name="">
-             <span>Full Name</span>
-           </div>
-           
-           <div class="input-box">
-             <input type="email" required="true" name="">
-             <span>Email</span>
-           </div>
-           
-           <div class="input-box">
-             <textarea required="true" name=""></textarea>
-             <span>Type your Message...</span>
-           </div>
-           
-           <div class="input-box">
-             <input type="submit" value="Send" name="">
-           </div>
-         </form>
-       </div>
-       
-     </div>
-   </div>
- </section>
+
+            <div class="section-header">
+                <div class="container">
+                    <h2>Please give me your details</h2>
+                    <p>we value our partnership and aim to provide you with the best service possible. Please contact us
+                        so that we can efficiently upgrade and maintain your system.</p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+
+                            <div class="contact-info-content">
+                                <h4>Address</h4>
+                                <p> 19 Nguyễn Hữu Thọ, Phường Tân Phong, Quận 7, TP. Hồ Chí Minh</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+
+                            <div class="contact-info-content">
+                                <h4>Phone</h4>
+                                <p>0903614098</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+
+                            <div class="contact-info-content">
+                                <h4>Email</h4>
+                                <p>522H0078@student.tdtu.edu.vn</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <form action="" id="contact-form">
+                            <h2>Send Message</h2>
+                            <div class="input-box ">
+                                <input type="text" required="true" name="fullname" placeholder="Full Name">
+                                <span>Full Name</span>
+                            </div>
+
+                            <div class="input-box ">
+                                <input type="email" required="true" name="email" placeholder="Email">
+                                <span>Email</span>
+                            </div>
+
+                            <div class="input-box ">
+                                <input type="text" required="true" name="message" placeholder="Your message">
+                                <span>Type your Message...</span>
+                            </div>
+
+                            <div class="input-box">
+                                <input type="submit" value="Send" name="" >
+                            </div>
+                        </form>
+                    </div>
+                    <script>
+                        document.getElementById("contact-form").addEventListener("submit", function(event) {
+                            event.preventDefault(); // Ngăn chặn gửi biểu mẫu
+                    
+                            // Thu thập thông tin từ các trường
+                            var fullName = document.getElementById("contact-form").elements["fullname"].value;
+                            var email = document.getElementById("contact-form").elements["email"].value;
+                            var message = document.getElementById("contact-form").elements["message"].value;
+                    
+                            // Hiển thị thông tin trong cửa sổ cảnh báo
+                            var alertMessage = "Full Name: " + fullName + "\nEmail: " + email + "\nMessage: " + message;
+                            alert(alertMessage);
+                    
+                            // Đặt lại biểu mẫu
+                            document.getElementById("contact-form").reset();
+                        });
+                    </script>
+                </div>
+            </div>
+        </section>
         <!-- END EDMO HTML (Happy Coding!)-->
-     </main>
+    </main>
     <!-- ================ contact section end ================= -->
     <footer>
         <!-- Footer Start-->
@@ -195,7 +212,8 @@
                                 <div class="footer-tittle">
                                     <h4>About Us</h4>
                                     <div class="footer-pera">
-                                        <p>We are a job search platform committed to creating limitless opportunities for both job seekers and employers.</p>
+                                        <p>We are a job search platform committed to creating limitless opportunities
+                                            for both job seekers and employers.</p>
                                     </div>
                                 </div>
                             </div>
@@ -235,14 +253,14 @@
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
                                 <h4>Company</h4>
-                                
+
                                 <!-- Form -->
                                 <div class="footer-form">
                                     <div id="mc_embed_signup">
                                         <form target="_blank"
                                             action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
                                             method="get" class="subscribe_form relative mail_part">
-                                            
+
                                             <div class="mt-10 info"></div>
                                         </form>
                                     </div>
