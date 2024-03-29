@@ -68,14 +68,25 @@
                                                 </ul>
                                             </li>
                                             <li><a href="contact.php">Contact</a></li>
+											<?php
+                                            session_start();
+
+                                            if (isset($_SESSION['user'])) {
+                                                $html = '<li id="login"><a href="#"><img width=30px height=30px src="Doc\img\user (1).png" alt="User Information"></a>
+                                                    <ul class="submenu">
+                                                        <li><a href="#">Manage Profile</a></li>
+                                                        <li id="login"><a href="logout.php">Logout</a></li>
+                                                    </ul>
+                                                </li>';
+                                                // In ra kết quả
+                                                echo $html;
+                                            }else{
+                                                echo '<li id="login"><a href="loginform.php">Login / Register</a></li>';
+                                            }
+                                            ?>
                                         </ul>
                                     </nav>
                                 </div>          
-                                <!-- Header-btn -->
-                                <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="#" class="btn head-btn1">Register</a>
-                                    <a href="#" class="btn head-btn2">Login</a>
-                                </div>
                             </div>
                         </div>
                         <!-- Mobile Menu -->
