@@ -67,7 +67,7 @@
                                                 </ul>
                                             </li>
                                             <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="loginform.html">Login / Register</a></li>
+                                            <li id="login"><a href="loginform.html">Login / Register</a></li>
                                         </ul>
                                     </nav>
                                 </div>          
