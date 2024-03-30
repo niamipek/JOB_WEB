@@ -82,7 +82,7 @@
                                                 } else {
                                                     $html = '<li id="login"><a href="#"><img width=30px height=30px src="Doc\img\user (1).png" alt="User Information"></a>
                                                                 <ul class="submenu">
-                                                                    <li><a href="#">Manage Profile</a></li>
+                                                                <li><a href="profile.php">Manage Profile</a></li>
                                                                     <li id="login"><a href="logout.php">Logout</a></li>
                                                                 </ul>
                                                             </li>';

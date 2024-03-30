@@ -68,28 +68,7 @@
                                  </li>
                                  <li><a href="contact.php">Contact</a></li>
                                  <?php
-                                 session_start();
-                                 if (isset($_SESSION['user'])) {
-                                    if ($_SESSION['user'] == 'admin') {
-                                       $html = '<li id="login"><a href="#"><img width=30px height=30px src="Doc\img\group.png" alt="User Information"></a>
-                                                                <ul class="submenu">
-                                                                    <li><a href="manageaccount.php"><b>Manage User</b></a></li>
-                                                                    <li id="login"><a href="logout.php">Logout</a></li>
-                                                                </ul>
-                                                            </li>';
-                                       echo $html;
-                                    } else {
-                                       $html = '<li id="login"><a href="#"><img width=30px height=30px src="Doc\img\user (1).png" alt="User Information"></a>
-                                                                <ul class="submenu">
-                                                                    <li><a href="#">Manage Profile</a></li>
-                                                                    <li id="login"><a href="logout.php">Logout</a></li>
-                                                                </ul>
-                                                            </li>';
-                                       echo $html;
-                                    }
-                                 } else {
-                                    echo '<li id="login"><a href="loginform.php">Login / Register</a></li>';
-                                 }
+                                 include("checksession.php");
                                  ?>
                               </ul>
                            </nav>
@@ -108,8 +87,7 @@
    </header>
    <!-- Hero Area Start-->
    <div class="slider-area ">
-      <div class="single-slider section-overly slider-height2 d-flex align-items-center"
-         data-background="assets/img/hero/about.jpg">
+      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
          <div class="container">
             <div class="row">
                <div class="col-xl-12">
@@ -187,8 +165,7 @@
                   </div>
                   <div class="navigation-area">
                      <div class="row">
-                        <div
-                           class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                        <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
                            <div class="thumb">
                               <a href="#">
                                  <img class="img-fluid" src="assets/img/post/preview.png" alt="">
@@ -206,8 +183,7 @@
                               </a>
                            </div>
                         </div>
-                        <div
-                           class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                        <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
                            <div class="detials">
                               <p>Next Post</p>
                               <a href="#">
@@ -327,8 +303,7 @@
                      <div class="row">
                         <div class="col-12">
                            <div class="form-group">
-                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-                                 placeholder="Write Comment"></textarea>
+                              <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
                            </div>
                         </div>
                         <div class="col-sm-6">
@@ -359,15 +334,13 @@
                      <form action="#">
                         <div class="form-group">
                            <div class="input-group mb-3">
-                              <input type="text" class="form-control" placeholder='Search Keyword'
-                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
+                              <input type="text" class="form-control" placeholder='Search Keyword' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
                               <div class="input-group-append">
                                  <button class="btns" type="button"><i class="ti-search"></i></button>
                               </div>
                            </div>
                         </div>
-                        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                           type="submit">Search</button>
+                        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Search</button>
                      </form>
                   </aside>
                   <aside class="single_sidebar_widget post_category_widget">
@@ -518,11 +491,9 @@
                      <h4 class="widget_title">Newsletter</h4>
                      <form action="#">
                         <div class="form-group">
-                           <input type="email" class="form-control" onfocus="this.placeholder = ''"
-                              onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                           <input type="email" class="form-control" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
                         </div>
-                        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                           type="submit">Subscribe</button>
+                        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Subscribe</button>
                      </form>
                   </aside>
                </div>
@@ -589,16 +560,10 @@
                         <!-- Form -->
                         <div class="footer-form">
                            <div id="mc_embed_signup">
-                              <form target="_blank"
-                                 action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                 method="get" class="subscribe_form relative mail_part">
-                                 <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                    class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                    onblur="this.placeholder = ' Email Address '">
+                              <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative mail_part">
+                                 <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = ' Email Address '">
                                  <div class="form-icon">
-                                    <button type="submit" name="submit" id="newsletter-submit"
-                                       class="email_icon newsletter-submit button-contactForm"><img
-                                          src="assets/img/icon/form.png" alt=""></button>
+                                    <button type="submit" name="submit" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/icon/form.png" alt=""></button>
                                  </div>
                                  <div class="mt-10 info"></div>
                               </form>
@@ -647,9 +612,10 @@
                      <div class="footer-copy-right">
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                            Copyright &copy;
-                           <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                           template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                              href="https://colorlib.com" target="_blank">Colorlib</a>
+                           <script>
+                              document.write(new Date().getFullYear());
+                           </script> All rights reserved | This
+                           template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                      </div>
