@@ -75,7 +75,7 @@
                                                 if ($_SESSION['user'] == 'admin') {
                                                     $html = '<li id="login"><a href="#"><img width=30px height=30px src="Doc\img\group.png" alt="User Information"></a>
                                                                 <ul class="submenu">
-                                                                    <li><a href="#"><b>Manage User</b></a></li>
+                                                                    <li><a href="manageaccount.php"><b>Manage User</b></a></li>
                                                                     <li id="login"><a href="logout.php">Logout</a></li>
                                                                 </ul>
                                                             </li>';
