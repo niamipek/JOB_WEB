@@ -1,13 +1,15 @@
 <?php
-	$uname = $_POST['uname'];
-	$uemail = $_POST['uemail'];
-	$upassword = $_POST['upassword'];
-
+$uname = $_POST['uname'];
+$uemail = $_POST['uemail'];
+$upassword = $_POST['upassword'];
+if ($uemail  === 'admin@gmail.com') {
+	echo '<script>alert("Invalid email"); window.location.href = "loginform.php";</script>';
+} else {
 	// Database connection
-	$conn = new mysqli('localhost','root','','job_website');
-	if($conn->connect_error){
+	$conn = new mysqli('localhost', 'root', '', 'job_website');
+	if ($conn->connect_error) {
 		echo "$conn->connect_error";
-		die("Connection Failed : ". $conn->connect_error);
+		die("Connection Failed : " . $conn->connect_error);
 	} else {
 		$stmt = $conn->prepare("insert into user(uname, uemail, upassword) values(?, ?, ?)");
 		$stmt->bind_param("sss", $uname, $uemail, $upassword);
@@ -17,4 +19,6 @@
 		$stmt->close();
 		$conn->close();
 	}
+}
+
 ?>
