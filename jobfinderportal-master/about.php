@@ -60,14 +60,7 @@
                                             <li><a href="index.php">Home</a></li>
                                             <li><a href="job_listing.php">Find a Jobs </a></li>
                                             <li><a href="about.php">About</a></li>
-                                            <li><a href="#">Page</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.php">Blog</a></li>
-                                                    <li><a href="single-blog.php">Blog Details</a></li>
-                                                    <li><a href="elements.php">Elements</a></li>
-                                                    <li><a href="job_details.php">job Details</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="blog.php">Blog</a></li>
                                             <li><a href="contact.php">Contact</a></li>
                                             <?php
                                             include("connection/checksession.php");
@@ -76,7 +69,7 @@
                                     </nav>
                                 </div>
                                 <!-- Header-btn -->
-                                
+
                             </div>
                         </div>
                         <!-- Mobile Menu -->
@@ -93,8 +86,7 @@
 
         <!-- Hero Area Start-->
         <div class="slider-area ">
-            <div class="single-slider section-overly slider-height2 d-flex align-items-center"
-                data-background="assets/img/hero/about.jpg">
+            <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
@@ -117,7 +109,6 @@
                             <div class="section-tittle section-tittle2">
                                 <span class="What_we_are_doing">What we are doing</span>
                                 <script>
-
                                     const class_of_What_we_are_doing = document.querySelector('.What_we_are_doing');
 
                                     const checkWhat = () => {
@@ -125,14 +116,14 @@
                                         const position_of_What_we_are_doing = class_of_What_we_are_doing.getBoundingClientRect().top;
                                         if (position_of_What_we_are_doing < triggerBottom) {
                                             class_of_What_we_are_doing.classList.add('show');
-                                        } if (position_of_What_we_are_doing > triggerBottom) {
+                                        }
+                                        if (position_of_What_we_are_doing > triggerBottom) {
                                             class_of_What_we_are_doing.classList.remove('show');
                                         }
                                     }
 
                                     window.addEventListener('scroll', checkWhat);
                                     checkWhat();
-
                                 </script>
                                 <h2 class="Talented_people_are_getting_Jobs">24k Talented people are getting Jobs</h2>
                                 <script>
@@ -142,45 +133,48 @@
                                         const position_of_Talented_people_are_getting_Jobs = class_of_Talented_people_are_getting_Jobs.getBoundingClientRect().top;
                                         if (position_of_Talented_people_are_getting_Jobs < triggerBottom) {
                                             class_of_Talented_people_are_getting_Jobs.classList.add('show');
-                                        } if (position_of_Talented_people_are_getting_Jobs > triggerBottom) {
+                                        }
+                                        if (position_of_Talented_people_are_getting_Jobs > triggerBottom) {
                                             class_of_Talented_people_are_getting_Jobs.classList.remove('show');
                                         }
                                     }
                                     window.addEventListener('scroll', checkTalented);
                                     checkTalented();
-                               </script>
+                                </script>
                             </div>
                             <div class="support-caption">
                                 <p class="pera-top longpara">We are a job search platform committed to creating limitless opportunities for both job seekers and employers. We pledge to connect job seekers with reputable companies and provide career development opportunities</p>
-                                    <script>
-                                        const class_of_longpara = document.querySelector('.longpara');
-                                        const checkLongpara = () => {
-                                            const triggerBottom = window.innerHeight / 5 * 4;
-                                            const position_of_longpara = class_of_longpara.getBoundingClientRect().top;
-                                            if (position_of_longpara < triggerBottom) {
-                                                class_of_longpara.classList.add('show');
-                                            } if (position_of_longpara > triggerBottom) {
-                                                class_of_longpara.classList.remove('show');
-                                            }
+                                <script>
+                                    const class_of_longpara = document.querySelector('.longpara');
+                                    const checkLongpara = () => {
+                                        const triggerBottom = window.innerHeight / 5 * 4;
+                                        const position_of_longpara = class_of_longpara.getBoundingClientRect().top;
+                                        if (position_of_longpara < triggerBottom) {
+                                            class_of_longpara.classList.add('show');
                                         }
-                                        window.addEventListener('scroll', checkLongpara);
-                                        checkLongpara();
-                                   </script>
+                                        if (position_of_longpara > triggerBottom) {
+                                            class_of_longpara.classList.remove('show');
+                                        }
+                                    }
+                                    window.addEventListener('scroll', checkLongpara);
+                                    checkLongpara();
+                                </script>
                                 <p class="shortpara">With a diverse range of industries and job positions, we continuously strive to deliver the best recruitment experience for everyone. Utilizing advanced technology and intelligent algorithms, we promise that the process of job search and recruitment will become quick, convenient, and effective. With a team of passionate and professional staff, we are ready to support and advise you in every step of your job search or recruitment journey. Let's together build a bright future for both you and the surrounding community.</p>
-                                    <script>
-                                        const class_of_shortpara = document.querySelector('.shortpara');
-                                        const checkShortpara = () => {
-                                            const triggerBottom = window.innerHeight / 5 * 4;
-                                            const position_of_shortpara = class_of_shortpara.getBoundingClientRect().top;
-                                            if (position_of_shortpara < triggerBottom) {
-                                                class_of_shortpara.classList.add('show');
-                                            } if (position_of_shortpara > triggerBottom) {
-                                                class_of_shortpara.classList.remove('show');
-                                            }
+                                <script>
+                                    const class_of_shortpara = document.querySelector('.shortpara');
+                                    const checkShortpara = () => {
+                                        const triggerBottom = window.innerHeight / 5 * 4;
+                                        const position_of_shortpara = class_of_shortpara.getBoundingClientRect().top;
+                                        if (position_of_shortpara < triggerBottom) {
+                                            class_of_shortpara.classList.add('show');
                                         }
-                                        window.addEventListener('scroll', checkShortpara);
-                                        checkShortpara();
-                                   </script>
+                                        if (position_of_shortpara > triggerBottom) {
+                                            class_of_shortpara.classList.remove('show');
+                                        }
+                                    }
+                                    window.addEventListener('scroll', checkShortpara);
+                                    checkShortpara();
+                                </script>
                                 <a href="formpostajob.php" class="btn post-btn button">Post a job</a>
                                 <script>
                                     const class_of_button = document.querySelector('.button');
@@ -189,13 +183,14 @@
                                         const position_of_button = class_of_button.getBoundingClientRect().top;
                                         if (position_of_button < triggerBottom) {
                                             class_of_button.classList.add('show');
-                                        } if (position_of_button > triggerBottom) {
+                                        }
+                                        if (position_of_button > triggerBottom) {
                                             class_of_button.classList.remove('show');
                                         }
                                     }
                                     window.addEventListener('scroll', checkButton);
                                     checkButton();
-                               </script>
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -203,7 +198,6 @@
                         <div class="support-location-img">
                             <img class="spimg" src="assets/img/service/support-img.jpg" alt="">
                             <script>
-
                                 const class_of_spimg = document.querySelector('.spimg');
 
                                 const checkSpimg = () => {
@@ -211,22 +205,21 @@
                                     const position_of_spimg = class_of_spimg.getBoundingClientRect().top;
                                     if (position_of_spimg < triggerBottom) {
                                         class_of_spimg.classList.add('show');
-                                    } if (position_of_spimg > triggerBottom) {
+                                    }
+                                    if (position_of_spimg > triggerBottom) {
                                         class_of_spimg.classList.remove('show');
                                     }
                                 }
 
                                 window.addEventListener('scroll', checkSpimg);
                                 checkSpimg();
-
                             </script>
                             <div class="support-img-cap text-center since">
                                 <p>Since</p>
-                                <span >1994</span>
+                                <span>1994</span>
                                 <script>
-
                                     const class_of_since = document.querySelector('.since');
-    
+
                                     const checkSince = () => {
                                         const triggerBottom = window.innerHeight / 5 * 4;
                                         const position_of_since = class_of_since.getBoundingClientRect().top;
@@ -236,10 +229,9 @@
                                             class_of_since.classList.remove('show');
                                         }
                                     }
-    
+
                                     window.addEventListener('scroll', checkSince);
                                     checkSince();
-    
                                 </script>
                             </div>
                         </div>
@@ -390,12 +382,11 @@
                         <div class="section-tittle text-center">
                             <span class="Our_latest_blog">Our latest blog</span>
                             <script>
-
                                 const class_of_Our_latest_blog = document.querySelector('.Our_latest_blog');
 
                                 const checkOur_latest_blog = () => {
                                     const triggerBottom = window.innerHeight / 5 * 4;
-                                    const position_of_Our_latest_blog= class_of_Our_latest_blog.getBoundingClientRect().top;
+                                    const position_of_Our_latest_blog = class_of_Our_latest_blog.getBoundingClientRect().top;
                                     if (position_of_Our_latest_blog < triggerBottom) {
                                         class_of_Our_latest_blog.classList.add('show');
                                     } else {
@@ -405,16 +396,14 @@
 
                                 window.addEventListener('scroll', checkOur_latest_blog);
                                 checkOur_latest_blog();
-
                             </script>
                             <h2 class="Our_recent_news">Our recent news</h2>
                             <script>
-
                                 const class_of_Our_recent_news = document.querySelector('.Our_recent_news');
 
                                 const checkOur_recent_news = () => {
                                     const triggerBottom = window.innerHeight / 5 * 4;
-                                    const position_of_Our_recent_news= class_of_Our_recent_news.getBoundingClientRect().top;
+                                    const position_of_Our_recent_news = class_of_Our_recent_news.getBoundingClientRect().top;
                                     if (position_of_Our_recent_news < triggerBottom) {
                                         class_of_Our_recent_news.classList.add('show');
                                     } else {
@@ -424,7 +413,6 @@
 
                                 window.addEventListener('scroll', checkOur_recent_news);
                                 checkOur_recent_news();
-
                             </script>
                         </div>
                     </div>
@@ -447,22 +435,20 @@
                                     </h3>
                                     <a href="#" class="more-btn">Read more »</a>
                                     <script>
-
                                         const class_of_blog1 = document.querySelector('.blog1');
-        
+
                                         const checkBlog1 = () => {
                                             const triggerBottom = window.innerHeight / 5 * 4;
-                                            const position_of_blog1= class_of_blog1.getBoundingClientRect().top;
+                                            const position_of_blog1 = class_of_blog1.getBoundingClientRect().top;
                                             if (position_of_blog1 < triggerBottom) {
                                                 class_of_blog1.classList.add('show');
                                             } else {
                                                 class_of_blog1.classList.remove('show');
                                             }
                                         }
-        
+
                                         window.addEventListener('scroll', checkBlog1);
                                         checkBlog1();
-        
                                     </script>
                                 </div>
                             </div>
@@ -486,22 +472,20 @@
                                     <a href="#" class="more-btn">Read more »</a>
                                 </div>
                                 <script>
-
                                     const class_of_blog2 = document.querySelector('.blog2');
-    
+
                                     const checkBlog2 = () => {
                                         const triggerBottom = window.innerHeight / 5 * 4;
-                                        const position_of_blog2= class_of_blog2.getBoundingClientRect().top;
+                                        const position_of_blog2 = class_of_blog2.getBoundingClientRect().top;
                                         if (position_of_blog2 < triggerBottom) {
                                             class_of_blog2.classList.add('show');
                                         } else {
                                             class_of_blog2.classList.remove('show');
                                         }
                                     }
-    
+
                                     window.addEventListener('scroll', checkBlog2);
                                     checkBlog2();
-    
                                 </script>
                             </div>
                         </div>
@@ -562,14 +546,12 @@
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                
+
                                 <!-- Form -->
                                 <div class="footer-form">
                                     <div id="mc_embed_signup">
-                                        <form target="_blank"
-                                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                            method="get" class="subscribe_form relative mail_part">
-                                            <h4>Company</h4>    
+                                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative mail_part">
+                                            <h4>Company</h4>
                                             <div class="mt-10 info"></div>
                                         </form>
                                     </div>
@@ -617,9 +599,10 @@
                             <div class="footer-copy-right">
                                 <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                     Copyright &copy;
-                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
-                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                        href="https://colorlib.com" target="_blank">Colorlib</a>
+                                    <script>
+                                        document.write(new Date().getFullYear());
+                                    </script> All rights reserved |
+                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 </p>
                             </div>
