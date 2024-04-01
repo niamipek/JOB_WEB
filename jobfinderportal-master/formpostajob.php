@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -16,47 +19,48 @@
 
 <body>
 	<div class="wrapper">
-		<form action="" id="wizard">
-			
+		<form action="postmethod.php" id="wizard" method="post">
+
 			<h2></h2>
-			
-				<div class="inner">
-					<div class="image-holder">
-						<img src="form-wizard-1.jpg" >
+
+			<div class="inner">
+				<div class="image-holder">
+					<img src="form-wizard-1.jpg">
+				</div>
+				<div class="form-content" >
+					<div class="form-header">
+						<h3><b>Post a job</b></h3>
 					</div>
-					<div class="form-content">
-						<div class="form-header">
-							<h3><b>Post  a job</b></h3>
+					<p>Please fill with your details</p>
+					<div class="form-row">
+						<div class="form-holder">
+							<input id="jtype" name="jtype" type="text" placeholder="Job type" class="form-control">
 						</div>
-						<p>Please fill with your details</p>
-						<div class="form-row">
-							<div class="form-holder">
-								<input type="text" placeholder="Job Category" class="form-control">
-							</div>
-							<div class="form-holder">
-								<input type="text" placeholder="Job Type" class="form-control">
-							</div>
+						<div class="form-holder">
+							<input id="jname" name="jname" type="text" placeholder="Job name" class="form-control">
 						</div>
-						<div class="form-row">
-							<div class="form-holder">
-								<input type="text" placeholder="Job Location" class="form-control">
-							</div>
-							<div class="form-holder">
-								<input type="text" placeholder="Experience" class="form-control">
-							</div>
+					</div>
+					<div class="form-row">
+						<div class="form-holder">
+							<input id="jsalary" name="jsalary" type="text" placeholder="Job salary" class="form-control">
 						</div>
-						<div class="form-row">
-							<div class="form-holder">
-								<input type="text" placeholder="Posted Within" class="form-control">
-							</div>
-							<div class="form-holder">
-								<input type="text" placeholder="Filter Jobs" class="form-control">
-							</div>
+						<div class="form-holder">
+							<input id="jcompany" name="jcompany" type="text" placeholder="Job company" class="form-control">
 						</div>
-						<button class="clkbtn">POST</button>
+					</div>
+					<div class="form-row">
+						<div class="form-holder">
+							<input id="jlocation" name="jlocation" type="text" placeholder="Job location" class="form-control">
+						</div>
+
+					</div>
+					<div class="button input-box">
+						<input type="submit" value="Sumbit" >
 					</div>
 				</div>
+			</div>
 			
+
 </body>
 
 </html>
