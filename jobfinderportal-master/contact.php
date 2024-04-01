@@ -71,7 +71,7 @@
                                             </li>
                                             <li><a href="contact.php">Contact</a></li>
                                             <?php
-                                            include("checksession.php");
+                                            include("connection/checksession.php");
                                             ?>
                                         </ul>
                                     </nav>
