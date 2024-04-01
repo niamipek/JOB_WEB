@@ -1,6 +1,7 @@
 <?php
 $uname = $_POST['uname'];
 $uemail = $_POST['uemail'];
+$uphone = $_POST['uphone'];
 $upassword = $_POST['upassword'];
 if ($uemail  === 'admin@gmail.com') {
 	echo '<script>alert("Invalid email"); window.location.href = "loginform.php";</script>';
@@ -11,8 +12,8 @@ if ($uemail  === 'admin@gmail.com') {
 		echo "$conn->connect_error";
 		die("Connection Failed : " . $conn->connect_error);
 	} else {
-		$stmt = $conn->prepare("insert into user(uname, uemail, upassword) values(?, ?, ?)");
-		$stmt->bind_param("sss", $uname, $uemail, $upassword);
+		$stmt = $conn->prepare("insert into user(uname, uemail, uphone, upassword) values(?, ?, ?, ?)");
+		$stmt->bind_param("ssss", $uname, $uemail, $uphone, $upassword);
 		$execval = $stmt->execute();
 		echo $execval;
 		header('Location: loginform.php');
