@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION['previous']=$_SERVER['HTTP_REFERER'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
