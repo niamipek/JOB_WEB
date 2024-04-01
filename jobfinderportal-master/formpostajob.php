@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.css">
 
 	<!-- STYLE CSS -->
-	<link rel="stylesheet" href="stylePOST.css">
+	<link rel="stylesheet" href="assets/css/stylePOST.css">
 </head>
 
 <body>
