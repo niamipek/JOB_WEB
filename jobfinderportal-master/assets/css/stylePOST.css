@@ -435,3 +435,19 @@ textarea.form-control {
   }
   
 /*# sourceMappingURL=style.css.map */
+.nutsubmit{
+  height: 60px;
+  width: 150px;
+  border-radius: 50px;
+  background-image: linear-gradient(to right,
+          rgb(255, 195, 110),
+          rgb(255, 146, 91));
+  font-size: 22px;
+  border: none;
+  cursor: pointer;
+  
+  font-family: "Muli-SemiBold";
+  font-size: 25px;
+  color: #453e79;
+  text-transform: uppercase;
+}

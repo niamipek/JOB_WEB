@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html>
 
@@ -27,39 +24,48 @@
 				<div class="image-holder">
 					<img src="form-wizard-1.jpg">
 				</div>
-				<div class="form-content" >
+				<div class="form-content">
 					<div class="form-header">
 						<h3><b>Post a job</b></h3>
 					</div>
 					<p>Please fill with your details</p>
 					<div class="form-row">
 						<div class="form-holder">
-							<input id="jtype" name="jtype" type="text" placeholder="Job type" class="form-control">
+							<select style="font-size: 20px;" id="jtype" name="jtype" class="form-control">
+								<option value="fulltime">Full-time</option>
+								<option value="pastime">Part-time</option>
+							</select>
 						</div>
 						<div class="form-holder">
-							<input id="jname" name="jname" type="text" placeholder="Job name" class="form-control">
-						</div>
-					</div>
-					<div class="form-row">
-						<div class="form-holder">
-							<input id="jsalary" name="jsalary" type="text" placeholder="Job salary" class="form-control">
-						</div>
-						<div class="form-holder">
-							<input id="jcompany" name="jcompany" type="text" placeholder="Job company" class="form-control">
+							<input style="font-size: 20px;" id="jname" name="jname" type="text" placeholder="Job name" class="form-control">
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-holder">
-							<input id="jlocation" name="jlocation" type="text" placeholder="Job location" class="form-control">
+							<input style="font-size: 20px;" id="jsalary" name="jsalary" type="text" placeholder="Job salary ($)" class="form-control">
+						</div>
+						<div class="form-holder">
+							<input style="font-size: 20px;" id="jcompany" name="jcompany" type="text" placeholder="Job company" class="form-control">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-holder">
+							<input style="font-size: 20px;" id="jlocation" name="jlocation" type="text" placeholder="Job location" class="form-control">
 						</div>
 
 					</div>
-					<div class="button input-box">
-						<input type="submit" value="Sumbit" >
+					<div class="form-header ">
+						<input style="height: 60px;
+      width: 200px;
+      border-radius: 50px;background-image: linear-gradient(to right,
+              rgb(255, 195, 110),
+              rgb(255, 146, 91));font-family: 'Muli-SemiBold';      font-size: 20px;
+      color: #453e79;
+      text-transform: uppercase; " type='submit' value="Submit">
 					</div>
 				</div>
 			</div>
-			
+
 
 </body>
 
