@@ -126,11 +126,8 @@
                         <!-- Featured_job_start -->
                         <section class="featured-job-area">
                             <div class="container">
-                                <!-- Count of Job list Start -->
-                                <!-- Count of Job list End -->
-                                <!-- single-job-content -->
                                 <?php
-                                include ('connection.php');
+                                include ('connection/connection.php');
                                 ?>
                             </div>
                     </div>
