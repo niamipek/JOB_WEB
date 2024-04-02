@@ -48,7 +48,7 @@ if ($conn->connect_error) {
             <h4>Job has been successfully added</h4>
             
             <p>Click <a href="job_listing.php">here</a> to return to the job listing page, or the website will automatically redirect in   <span id="counter" class="text-danger">7</span> seconds</p>
-            <a href="job_listing.php" class="btn btn-success px-5">Return to Find a job page</a> 
+            <a style="background: #28395a;" href="job_listing.php" class="btn btn-success px-5">Return to Find a job page</a> 
         </div>
       </div>
     </div>

@@ -114,7 +114,7 @@ if ($conn->connect_error) {
                 <input id="uemail" name="uemail" type="email" placeholder="Enter your email" required />
               </div>
               <div class="input-box">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-phone"></i>
                 <input id="uphone" name="uphone" type="text" placeholder="Enter your phone number" required />
               </div>
               <div class="input-box">
