@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/display.css">
-    
+
 </head>
 
 <body>
@@ -61,14 +61,7 @@
                                             <li><a href="index.php">Home</a></li>
                                             <li><a href="job_listing.php">Find a Jobs </a></li>
                                             <li><a href="about.php">About</a></li>
-                                            <li><a href="#">Page</a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.php">Blog</a></li>
-                                                    <li><a href="single-blog.php">Blog Details</a></li>
-                                                    <li><a href="elements.php">Elements</a></li>
-                                                    <li><a href="job_details.php">job Details</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="blog.php">Blog</a></li>
                                             <li><a href="contact.php">Contact</a></li>
                                             <?php
                                             include("connection/checksession.php");
