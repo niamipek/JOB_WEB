@@ -142,14 +142,14 @@
                             <ul class="list-group list-group-flush">
 
                                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-lock2" viewBox="0 0 16 16">
+                                    <h6 class="mb-0"><svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-lock2" viewBox="0 0 16 16">
                                             <path d="M8 5a1 1 0 0 1 1 1v1H7V6a1 1 0 0 1 1-1m2 2.076V6a2 2 0 1 0-4 0v1.076c-.54.166-1 .597-1 1.224v2.4c0 .816.781 1.3 1.5 1.3h3c.719 0 1.5-.484 1.5-1.3V8.3c0-.627-.46-1.058-1-1.224" />
                                             <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1" />
                                         </svg><a id="changepassword" href="change_password.php">Change password</a></h6>
 
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                    <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <h6 class="mb-0"><svg style="margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                                         </svg ><a href="edit.php">Edit your profile</a></h6>
@@ -184,7 +184,7 @@
                                                 <div class="job-tittle">
 
                                                     <a href="job_details.php">
-                                                        <h4>Digital Marketer</h4>
+                                                        <h4 style="margin-bottom: 30px; margin-top:30px">Digital Marketer</h4>
                                                     </a>
                                                     <ul>
                                                         <li>Creative Agency</li>
@@ -205,7 +205,7 @@
                                                 </div>
                                                 <div class="job-tittle">
                                                     <a href="job_details.php">
-                                                        <h4>Digital Marketer</h4>
+                                                        <h4 style="margin-bottom: 30px; margin-top:30px">Digital Marketer</h4>
                                                     </a>
                                                     <ul>
                                                         <li>Creative Agency</li>
@@ -215,7 +215,7 @@
                                                 </div>
                                             </div>
                                             <div class="items-link f-right">
-                                                <a href="job_details.php">Full Time</a>
+                                                
                                                 <span>7 hours ago</span>
                                             </div>
                                         </div>
@@ -228,7 +228,7 @@
                                                 </div>
                                                 <div class="job-tittle">
                                                     <a href="job_details.php">
-                                                        <h4>Digital Marketer</h4>
+                                                        <h4 style="margin-bottom: 30px; margin-top:30px">Digital Marketer</h4>
                                                     </a>
                                                     <ul>
                                                         <li>Creative Agency</li>
@@ -238,7 +238,7 @@
                                                 </div>
                                             </div>
                                             <div class="items-link f-right">
-                                                <a href="job_details.php">Full Time</a>
+                                                
                                                 <span>7 hours ago</span>
                                             </div>
                                         </div>
@@ -251,7 +251,7 @@
                                                 </div>
                                                 <div class="job-tittle">
                                                     <a href="job_details.php">
-                                                        <h4>Digital Marketer</h4>
+                                                        <h4 style="margin-bottom: 30px; margin-top:30px">Digital Marketer</h4>
                                                     </a>
                                                     <ul>
                                                         <li>Creative Agency</li>
@@ -261,7 +261,7 @@
                                                 </div>
                                             </div>
                                             <div class="items-link f-right">
-                                                <a href="job_details.php">Full Time</a>
+                                                
                                                 <span>7 hours ago</span>
                                             </div>
                                         </div>
