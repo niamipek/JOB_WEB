@@ -1,6 +1,4 @@
-<?php
-$_SESSION['previous'] = $_SERVER['HTTP_REFERER'];
-?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
