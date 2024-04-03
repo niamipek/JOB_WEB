@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($_SESSION['user'] == 'admin') {
             $adminEmail = $_GET['id'];
 
-            $stmt = $conn->prepare("UPDATE user U JOIN job J ON U.uemail = J.uemail SET U.uname = ?, U.uemail = ?, U.uphone = ?, J.uemail = ? WHERE uemail = ?");
+            $stmt = $conn->prepare("UPDATE user U JOIN job J ON U.uemail_id = J.uemail SET U.uname = ?, U.uemail = ?, U.uphone = ?, J.uemail = ? WHERE uemail = ?");
             $stmt->bind_param("sssss", $uname, $uemail, $uphone, $uemail, $adminEmail);
             $stmt->execute();
             $stmt->close();
