@@ -55,15 +55,9 @@
 
 					</div>
 					<div class="form-header ">
-						<input style="height: 60px;
-      width: 200px;
-      border-radius: 50px;background-image: linear-gradient(to right,
-              rgb(255, 195, 110),
-              rgb(255, 146, 91));font-family: 'Muli-SemiBold';      font-size: 20px;
-      color: #453e79;
-      text-transform: uppercase; " type='submit' value="Submit">
+						<input style="height: 60px;width: 200px;border-radius: 50px;background-image:linear-gradient(to right,rgb(255, 195, 110),rgb(255, 146, 91));font-family: 'Muli-SemiBold';font-size: 20px;color: #453e79;text-transform: uppercase; " type='submit' value="Submit">
 					</div>
-				</div>
+				</div>  
 			</div>
 
 

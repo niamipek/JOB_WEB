@@ -1,26 +1,38 @@
 <?php
+session_start();
+if (isset($_SESSION['user'])) {
+    $jtype = $_POST['jtype'];
+    $jname = $_POST['jname'];
+    $jsalary = $_POST['jsalary'];
+    $jcompany = $_POST['jcompany'];
+    $jlocation = $_POST['jlocation'];
 
-$jtype=$_POST['jtype'];
-$jname = $_POST['jname'];
-$jsalary = $_POST['jsalary'];
-$jcompany = $_POST['jcompany'];
-$jlocation = $_POST['jlocation'];
+    // Database connection
+    $conn = new mysqli('localhost', 'root', '', 'job_website');
+    if ($conn->connect_error) {
+        echo "$conn->connect_error";
+        die("Connection Failed : " . $conn->connect_error);
+    } else {
+        // Lấy uemail từ bảng user
+        $user_email = $_SESSION['user']; // Giả sử giá trị của $_SESSION['user'] chính là email của người dùng
 
-// Database connection
-$conn = new mysqli('localhost', 'root', '', 'job_website');
-if ($conn->connect_error) {
-	echo "$conn->connect_error";
-	die("Connection Failed : " . $conn->connect_error);
-} else {
-	$stmt = $conn->prepare("INSERT INTO job (jtype, jname, jsalary, jcompany, jlocation) VALUES (?, ?, ?, ?, ?)");
-	$stmt->bind_param("sssss", $jtype, $jname, $jsalary, $jcompany, $jlocation);
-	$execval = $stmt->execute();
-	
-	$stmt->close();
-	$conn->close();
+        // Chèn dữ liệu vào bảng job, bao gồm cả uemail từ bảng user
+        $stmt = $conn->prepare("INSERT INTO job (jtype, jname, jsalary, jcompany, jlocation, uemail_id) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssss", $jtype, $jname, $jsalary, $jcompany, $jlocation, $user_email);
+        $execval = $stmt->execute();
+
+        if ($execval === false) {
+            echo "Error: " . $conn->error;
+        } else {
+            echo "Job added successfully";
+        }
+
+        $stmt->close();
+        $conn->close();
+    }
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,7 +60,7 @@ if ($conn->connect_error) {
             <h4>Job has been successfully added</h4>
             
             <p>Click <a href="job_listing.php">here</a> to return to the job listing page, or the website will automatically redirect in   <span id="counter" class="text-danger">7</span> seconds</p>
-            <a href="job_listing.php" class="btn btn-success px-5">Return to Find a job page</a> 
+            <a style="background: #28395a;" href="job_listing.php" class="btn btn-success px-5">Return to Find a job page</a> 
         </div>
       </div>
     </div>
