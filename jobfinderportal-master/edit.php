@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_delete_job->close();
 
             // Cập nhật bản ghi trong bảng USER từ uemail = 'boithuy@gmail.com12' thành 'D@S'
-            $stmt_update_user = $conn->prepare("UPDATE USER SET uemail=? WHERE uemail=?");
-            $stmt_update_user->bind_param("ss", $uemail, $user);
+            $stmt_update_user = $conn->prepare("UPDATE USER SET uname = ?, uemail = ?, uphone = ? WHERE uemail=?");
+            $stmt_update_user->bind_param("ssss", $uname, $uemail, $uphone,  $user);
             $stmt_update_user->execute();
             $stmt_update_user->close();
 
@@ -67,8 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_delete_job->execute();
             $stmt_delete_job->close();
 
-            $stmt_update_user = $conn->prepare("UPDATE USER SET uname = ?, uemail = ?, uphone = ?, uemail = ? WHERE uemail=?");
-            $stmt_update_user->bind_param("ssss", $uemail, $user);
+            $stmt_update_user = $conn->prepare("UPDATE USER SET uname = ?, uemail = ?, uphone = ? WHERE uemail=?");
+            $stmt_update_user->bind_param("ssss", $uname, $uemail, $uphone,  $user);
             $stmt_update_user->execute();
             $stmt_update_user->close();
 
