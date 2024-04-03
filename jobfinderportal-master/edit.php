@@ -62,13 +62,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt_select_job->store_result();
             $stmt_select_job->bind_result($jtype, $jname, $jsalary, $jcompany, $jlocation);
 
-            // Xóa bản ghi từ bảng JOB có uemail = 'boithuy@gmail.com12'
             $stmt_delete_job = $conn->prepare("DELETE FROM JOB WHERE uemail=?");
             $stmt_delete_job->bind_param("s", $user);
             $stmt_delete_job->execute();
             $stmt_delete_job->close();
 
-            // Cập nhật bản ghi trong bảng USER từ uemail = 'boithuy@gmail.com12' thành 'D@S'
             $stmt_update_user = $conn->prepare("UPDATE USER SET uname = ?, uemail = ?, uphone = ?, uemail = ? WHERE uemail=?");
             $stmt_update_user->bind_param("ssss", $uemail, $user);
             $stmt_update_user->execute();
