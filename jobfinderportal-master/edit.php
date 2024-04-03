@@ -16,36 +16,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->connect_error) {
         die("Connection Failed: " . $conn->connect_error);
     } else {
-        // Cập nhật thông tin người dùng trong cơ sở dữ liệu
         if ($_SESSION['user'] == 'admin') {
-            // Lấy email từ session của admin
             $adminEmail = $_GET['id'];
 
-            $stmt = $conn->prepare("UPDATE user SET uname = ?, uemail = ?, uphone = ? WHERE uemail = ?");
-            $stmt->bind_param("ssss", $uname, $uemail, $uphone, $adminEmail);
+            $stmt = $conn->prepare("UPDATE user U JOIN job J ON U.uemail = J.uemail SET U.uname = ?, U.uemail = ?, U.uphone = ?, J.uemail = ? WHERE uemail = ?");
+            $stmt->bind_param("sssss", $uname, $uemail, $uphone, $uemail, $adminEmail);
             $stmt->execute();
             $stmt->close();
             $conn->close();
-
-            // Redirect admin to manage account page
             header('Location: manageaccount.php');
             exit();
         } else {
-            // Lấy email từ GET nếu không phải admin
             $user = $_SESSION['user'];
 
-            $stmt = $conn->prepare("UPDATE user SET uname = ?, uemail = ?, uphone = ? WHERE uemail = ?");
-            $stmt->bind_param("ssss", $uname, $uemail, $uphone, $user);
+            $stmt = $conn->prepare("UPDATE user U JOIN job J ON U.uemail = J.uemail SET U.uname = ?, U.uemail = ?, U.uphone = ?, J.uemail = ? WHERE uemail = ?");
+            $stmt->bind_param("sssss", $uname, $uemail, $uphone, $uemail, $adminEmail);
             $stmt->execute();
             $stmt->close();
             $conn->close();
-            // Sau khi thực hiện cập nhật email
-            $_SESSION['user'] = $uemail; // Cập nhật email mới trong session
-
-// Tiếp tục với các bước xử lý khác hoặc chuyển hướng đến trang khác
-
-
-            // Redirect regular user to profile page
+            $_SESSION['user'] = $uemail;
             header('Location: profile.php');
             exit();
         }
