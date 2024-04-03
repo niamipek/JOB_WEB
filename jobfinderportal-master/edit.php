@@ -17,24 +17,77 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection Failed: " . $conn->connect_error);
     } else {
         if ($_SESSION['user'] == 'admin') {
-            $adminEmail = $_GET['id'];
+            $user = $_GET['id'];
 
-            $stmt = $conn->prepare("UPDATE user U JOIN job J ON U.uemail_id = J.uemail SET U.uname = ?, U.uemail = ?, U.uphone = ?, J.uemail = ? WHERE uemail = ?");
-            $stmt->bind_param("sssss", $uname, $uemail, $uphone, $uemail, $adminEmail);
-            $stmt->execute();
-            $stmt->close();
+            $stmt_select_job = $conn->prepare("SELECT jtype, jname, jsalary, jcompany, jlocation FROM job WHERE uemail = ?");
+            $stmt_select_job->bind_param("s", $user);
+            $stmt_select_job->execute();
+            $stmt_select_job->store_result();
+            $stmt_select_job->bind_result($jtype, $jname, $jsalary, $jcompany, $jlocation);
+
+            // Xóa bản ghi từ bảng JOB có uemail = 'boithuy@gmail.com12'
+            $stmt_delete_job = $conn->prepare("DELETE FROM JOB WHERE uemail=?");
+            $stmt_delete_job->bind_param("s", $user);
+            $stmt_delete_job->execute();
+            $stmt_delete_job->close();
+
+            // Cập nhật bản ghi trong bảng USER từ uemail = 'boithuy@gmail.com12' thành 'D@S'
+            $stmt_update_user = $conn->prepare("UPDATE USER SET uemail=? WHERE uemail=?");
+            $stmt_update_user->bind_param("ss", $uemail, $user);
+            $stmt_update_user->execute();
+            $stmt_update_user->close();
+
+            // Thêm bản ghi mới vào bảng JOB
+            // Duyệt qua kết quả từ truy vấn SELECT
+            if ($stmt_select_job->fetch()) {
+                // Nếu có kết quả, tiến hành chèn giá trị vào bảng JOB
+                $stmt_insert_job = $conn->prepare("INSERT INTO JOB VALUES (?, ?, ?, ?, ?, ?)");
+                $stmt_insert_job->bind_param("ssssss", $jtype, $jname, $jsalary, $jcompany, $jlocation, $uemail);
+                $stmt_insert_job->execute();
+                $stmt_insert_job->close();
+            } else {
+                echo "Không tìm thấy dữ liệu trong bảng job cho uemail: $uemail";
+            }
+
             $conn->close();
+
             header('Location: manageaccount.php');
             exit();
         } else {
             $user = $_SESSION['user'];
 
-            $stmt = $conn->prepare("UPDATE user U JOIN job J ON U.uemail = J.uemail SET U.uname = ?, U.uemail = ?, U.uphone = ?, J.uemail = ? WHERE uemail = ?");
-            $stmt->bind_param("sssss", $uname, $uemail, $uphone, $uemail, $adminEmail);
-            $stmt->execute();
-            $stmt->close();
+            $stmt_select_job = $conn->prepare("SELECT jtype, jname, jsalary, jcompany, jlocation FROM job WHERE uemail = ?");
+            $stmt_select_job->bind_param("s", $user);
+            $stmt_select_job->execute();
+            $stmt_select_job->store_result();
+            $stmt_select_job->bind_result($jtype, $jname, $jsalary, $jcompany, $jlocation);
+
+            // Xóa bản ghi từ bảng JOB có uemail = 'boithuy@gmail.com12'
+            $stmt_delete_job = $conn->prepare("DELETE FROM JOB WHERE uemail=?");
+            $stmt_delete_job->bind_param("s", $user);
+            $stmt_delete_job->execute();
+            $stmt_delete_job->close();
+
+            // Cập nhật bản ghi trong bảng USER từ uemail = 'boithuy@gmail.com12' thành 'D@S'
+            $stmt_update_user = $conn->prepare("UPDATE USER SET uname = ?, uemail = ?, uphone = ?, uemail = ? WHERE uemail=?");
+            $stmt_update_user->bind_param("ssss", $uemail, $user);
+            $stmt_update_user->execute();
+            $stmt_update_user->close();
+
+            // Thêm bản ghi mới vào bảng JOB
+            // Duyệt qua kết quả từ truy vấn SELECT
+            if ($stmt_select_job->fetch()) {
+                // Nếu có kết quả, tiến hành chèn giá trị vào bảng JOB
+                $stmt_insert_job = $conn->prepare("INSERT INTO JOB VALUES (?, ?, ?, ?, ?, ?)");
+                $stmt_insert_job->bind_param("ssssss", $jtype, $jname, $jsalary, $jcompany, $jlocation, $uemail);
+                $stmt_insert_job->execute();
+                $stmt_insert_job->close();
+            } else {
+                echo "Không tìm thấy dữ liệu trong bảng job cho uemail: $uemail";
+            }
+
             $conn->close();
-            $_SESSION['user'] = $uemail;
+
             header('Location: profile.php');
             exit();
         }
@@ -62,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <form action="#" method="post">
                         <div class="input-boxes">
                             <?php
-                            include('connection/connect_edit.php');
+                            include ('connection/connect_edit.php');
                             ?>
                             <div class="button input-box">
                                 <input type="submit" value="Sumbit" />
