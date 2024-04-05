@@ -11,7 +11,7 @@ $pass = '';
 $error = '';
 
 
-$conn = new mysqli('localhost', 'root', '', 'job_website');
+$conn = new mysqli('localhost', 'root', '', 'job_web');
 if ($conn->connect_error) {
   die("Connection Failed : " . $conn->connect_error);
 } else {

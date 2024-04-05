@@ -7,7 +7,7 @@ if ($uemail  === 'admin@gmail.com') {
 	echo '<script>alert("Invalid email"); window.location.href = "loginform.php";</script>';
 } else {
 	// Database connection
-	$conn = new mysqli('localhost', 'root', '', 'job_website');
+	$conn = new mysqli('localhost', 'root', '', 'job_web');
 	if ($conn->connect_error) {
 		echo "$conn->connect_error";
 		die("Connection Failed : " . $conn->connect_error);

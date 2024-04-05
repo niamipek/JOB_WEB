@@ -32,8 +32,8 @@
 					<div class="form-row">
 						<div class="form-holder">
 							<select style="font-size: 20px;" id="jtype" name="jtype" class="form-control">
-								<option value="fulltime">Full-time</option>
-								<option value="pastime">Part-time</option>
+								<option value="Full Time">Full-time</option>
+								<option value="Part Time">Part-time</option>
 							</select>
 						</div>
 						<div class="form-holder">

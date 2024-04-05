@@ -8,7 +8,7 @@ if (isset($_SESSION['user'])) {
     $jlocation = $_POST['jlocation'];
 
     // Database connection
-    $conn = new mysqli('localhost', 'root', '', 'job_website');
+    $conn = new mysqli('localhost', 'root', '', 'job_web');
     if ($conn->connect_error) {
         echo "$conn->connect_error";
         die("Connection Failed : " . $conn->connect_error);
@@ -17,14 +17,13 @@ if (isset($_SESSION['user'])) {
         $user_email = $_SESSION['user']; // Giả sử giá trị của $_SESSION['user'] chính là email của người dùng
 
         // Chèn dữ liệu vào bảng job, bao gồm cả uemail từ bảng user
-        $stmt = $conn->prepare("INSERT INTO job (jtype, jname, jsalary, jcompany, jlocation, uemail_id) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO job (jtype, jname, jsalary, jcompany, jlocation, uemail) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssss", $jtype, $jname, $jsalary, $jcompany, $jlocation, $user_email);
         $execval = $stmt->execute();
 
         if ($execval === false) {
             echo "Error: " . $conn->error;
         } else {
-            echo "Job added successfully";
         }
 
         $stmt->close();

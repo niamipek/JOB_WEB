@@ -17,97 +17,75 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection Failed: " . $conn->connect_error);
     } else {
         if ($_SESSION['user'] == 'admin') {
-            // Lấy id của người dùng từ tham số id trong URL
             $user = $_GET['id'];
 
-            // Lưu trữ tất cả các công việc của người dùng vào một mảng
-            $jobs = array();
-
-            // Truy vấn để lấy các công việc của người dùng dựa trên id
             $stmt_select_job = $conn->prepare("SELECT jtype, jname, jsalary, jcompany, jlocation FROM job WHERE uemail = ?");
             $stmt_select_job->bind_param("s", $user);
             $stmt_select_job->execute();
             $stmt_select_job->store_result();
             $stmt_select_job->bind_result($jtype, $jname, $jsalary, $jcompany, $jlocation);
 
-            // Duyệt qua kết quả truy vấn
-            while ($stmt_select_job->fetch()) {
-                $jobs[] = array('jtype' => $jtype, 'jname' => $jname, 'jsalary' => $jsalary, 'jcompany' => $jcompany, 'jlocation' => $jlocation);
-            }
-
-            // Đóng kết nối để chuẩn bị cho việc thực hiện các truy vấn khác
-            $stmt_select_job->close();
-
-            // Xóa tất cả các công việc của người dùng từ bảng JOB
-            $stmt_delete_job = $conn->prepare("DELETE FROM job WHERE uemail = ?");
-            $stmt_delete_job->bind_param("s", $user);
-            $stmt_delete_job->execute();
-            $stmt_delete_job->close();
-
-            // Cập nhật thông tin người dùng trong bảng USER
-            $stmt_update_user = $conn->prepare("UPDATE user SET uname = ?, uemail = ?, uphone = ? WHERE uemail = ?");
-            $stmt_update_user->bind_param("ssss", $uname, $uemail, $uphone, $user);
-            $stmt_update_user->execute();
-            $stmt_update_user->close();
-
-            // Thêm lại tất cả các công việc đã lưu trữ vào bảng JOB với email mới
-            foreach ($jobs as $job) {
-                $stmt_insert_job = $conn->prepare("INSERT INTO job (jtype, jname, jsalary, jcompany, jlocation, uemail) VALUES (?, ?, ?, ?, ?, ?)");
-                $stmt_insert_job->bind_param("ssssss", $job['jtype'], $job['jname'], $job['jsalary'], $job['jcompany'], $job['jlocation'], $uemail);
-                $stmt_insert_job->execute();
-                $stmt_insert_job->close();
-            }
-
-            // Đóng kết nối
-            $conn->close();
-            // Chuyển hướng người dùng về trang manageaccount.php
-            header('Location: manageaccount.php');
-            exit();
-        } else {
-            $user = $_SESSION['user'];
-
-            // Lưu trữ tất cả các công việc của người dùng vào một mảng
-            $jobs = array();
-
-            $stmt_select_job = $conn->prepare("SELECT jtype, jname, jsalary, jcompany, jlocation FROM job WHERE uemail = ?");
-            $stmt_select_job->bind_param("s", $user);
-            $stmt_select_job->execute();
-            $stmt_select_job->store_result();
-            $stmt_select_job->bind_result($jtype, $jname, $jsalary, $jcompany, $jlocation);
-
-            while ($stmt_select_job->fetch()) {
-                $jobs[] = array('jtype' => $jtype, 'jname' => $jname, 'jsalary' => $jsalary, 'jcompany' => $jcompany, 'jlocation' => $jlocation);
-            }
-
-            $stmt_select_job->close();
-
-            // Xóa tất cả các công việc của người dùng từ bảng JOB
+            // Xóa bản ghi từ bảng JOB có uemail = 'boithuy@gmail.com12'
             $stmt_delete_job = $conn->prepare("DELETE FROM JOB WHERE uemail=?");
             $stmt_delete_job->bind_param("s", $user);
             $stmt_delete_job->execute();
             $stmt_delete_job->close();
 
-            // Update thông tin người dùng
+            // Cập nhật bản ghi trong bảng USER từ uemail = 'boithuy@gmail.com12' thành 'D@S'
             $stmt_update_user = $conn->prepare("UPDATE USER SET uname = ?, uemail = ?, uphone = ? WHERE uemail=?");
-            $stmt_update_user->bind_param("ssss", $uname, $uemail, $uphone, $user);
+            $stmt_update_user->bind_param("ssss", $uname, $uemail, $uphone,  $user);
             $stmt_update_user->execute();
             $stmt_update_user->close();
 
-            // Thêm lại tất cả các công việc đã lưu trữ vào bảng JOB
-            foreach ($jobs as $job) {
+            // Thêm bản ghi mới vào bảng JOB
+            // Duyệt qua kết quả từ truy vấn SELECT
+            if ($stmt_select_job->fetch()) {
+                // Nếu có kết quả, tiến hành chèn giá trị vào bảng JOB
                 $stmt_insert_job = $conn->prepare("INSERT INTO JOB VALUES (?, ?, ?, ?, ?, ?)");
-                $stmt_insert_job->bind_param("ssssss", $job['jtype'], $job['jname'], $job['jsalary'], $job['jcompany'], $job['jlocation'], $uemail);
+                $stmt_insert_job->bind_param("ssssss", $jtype, $jname, $jsalary, $jcompany, $jlocation, $uemail);
                 $stmt_insert_job->execute();
                 $stmt_insert_job->close();
+            } else {
+                echo "Không tìm thấy dữ liệu trong bảng job cho uemail: $uemail";
             }
 
-            // Cập nhật session với email mới
-            $_SESSION['user'] = $uemail;
-
-            // Đóng kết nối
             $conn->close();
 
-            // Chuyển hướng người dùng về trang profile.php
+            header('Location: manageaccount.php');
+            exit();
+        } else {
+            $user = $_SESSION['user'];
+
+            $stmt_select_job = $conn->prepare("SELECT jtype, jname, jsalary, jcompany, jlocation FROM job WHERE uemail = ?");
+            $stmt_select_job->bind_param("s", $user);
+            $stmt_select_job->execute();
+            $stmt_select_job->store_result();
+            $stmt_select_job->bind_result($jtype, $jname, $jsalary, $jcompany, $jlocation);
+
+            $stmt_delete_job = $conn->prepare("DELETE FROM JOB WHERE uemail=?");
+            $stmt_delete_job->bind_param("s", $user);
+            $stmt_delete_job->execute();
+            $stmt_delete_job->close();
+
+            $stmt_update_user = $conn->prepare("UPDATE USER SET uname = ?, uemail = ?, uphone = ? WHERE uemail=?");
+            $stmt_update_user->bind_param("ssss", $uname, $uemail, $uphone,  $user);
+            $stmt_update_user->execute();
+            $stmt_update_user->close();
+
+            // Thêm bản ghi mới vào bảng JOB
+            // Duyệt qua kết quả từ truy vấn SELECT
+            if ($stmt_select_job->fetch()) {
+                // Nếu có kết quả, tiến hành chèn giá trị vào bảng JOB
+                $stmt_insert_job = $conn->prepare("INSERT INTO JOB VALUES (?, ?, ?, ?, ?, ?)");
+                $stmt_insert_job->bind_param("ssssss", $jtype, $jname, $jsalary, $jcompany, $jlocation, $uemail);
+                $stmt_insert_job->execute();
+                $stmt_insert_job->close();
+            } else {
+                echo "Không tìm thấy dữ liệu trong bảng job cho uemail: $uemail";
+            }
+
+            $conn->close();
+
             header('Location: profile.php');
             exit();
         }
@@ -135,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <form action="#" method="post">
                         <div class="input-boxes">
                             <?php
-                            include ('connection/connect_edit.php');
+                            include ('connection/connect_edit_job.php');
                             ?>
                             <div class="button input-box">
                                 <input type="submit" value="Sumbit" />
