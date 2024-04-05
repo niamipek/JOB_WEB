@@ -8,7 +8,7 @@ if (isset($_SESSION['user'])) {
     $jlocation = $_POST['jlocation'];
 
     // Database connection
-    $conn = new mysqli('localhost', 'root', '', 'job_website');
+    $conn = new mysqli('localhost', 'root', '', 'job_web');
     if ($conn->connect_error) {
         echo "$conn->connect_error";
         die("Connection Failed : " . $conn->connect_error);
@@ -24,7 +24,6 @@ if (isset($_SESSION['user'])) {
         if ($execval === false) {
             echo "Error: " . $conn->error;
         } else {
-            echo "Job added successfully";
         }
 
         $stmt->close();
