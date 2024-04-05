@@ -1,12 +1,16 @@
 <?php
-// Kết nối đến cơ sở dữ liệu
+// Kết nối cơ sở dữ liệu
 $conn = new mysqli('localhost', 'root', '', 'job_web');
+
+$location = $_POST['location'];
+
+// Kiểm tra kết nối
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Thực hiện truy vấn SQL
-$sql = "SELECT * FROM job";
+// Truy vấn các công việc tương ứng với công ty và vị trí
+$sql = "SELECT * FROM job WHERE  jlocation = '$location'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -40,5 +44,8 @@ if ($result->num_rows > 0) {
             </div>
         </div>';
     }
-}
+} 
+
+// Đóng kết nối cơ sở dữ liệu
+$conn->close();
 ?>

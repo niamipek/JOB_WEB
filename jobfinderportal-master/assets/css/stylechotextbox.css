@@ -1,0 +1,21 @@
+
+    /* Style for the job company input */
+    .small-section-tittle2 input[type="text"] {
+        width: 100%; /* Set the width to 100% */
+        padding: 10px; /* Add padding */
+        border: 1px solid #ccc; /* Add a border */
+        border-radius: 5px; /* Add border radius */
+        box-sizing: border-box; /* Ensure the padding and border are included in the element's total width */
+        font-size: 16px; /* Set font size */
+    }
+
+    /* Style for the placeholder text */
+    .small-section-tittle2 input[type="text"]::placeholder {
+        color: #999; /* Set placeholder text color */
+    }
+
+    /* Style for the focused state */
+    .small-section-tittle2 input[type="text"]:focus {
+        outline: none; /* Remove default focus outline */
+        border-color: #6c63ff; /* Change border color on focus */
+    }
