@@ -14,27 +14,30 @@ if (isset($_SESSION['user'])) {
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $html = "<div class='single-job-items mb-30'>
-            <div class='job-items'>
-                <div class='company-img'>
-                    <a href='job_details.php'><img src='assets/img/icon/job-list1.png'
-                            alt=''></a>
+            $html = '
+            <div class="single-job-items mb-30">
+                <div class="job-items">
+                    <div class="company-img">
+                        <a href="#"><img width=75px height=auto src="Doc\img\user_list.png" alt=""></a>
+                    </div>
+                    <div class="job-tittle job-tittle2">
+                        <a href="#">
+                            <h4 style="margin-top: 20px;">' . $row['jname'] . '</h4>
+                        </a>
+                        <ul>
+                            <li><i class="fas fa-hourglass-half"></i>' . $row['jtype'] . '</li>
+                        <li><i class="fas fa-building"></i>' . $row['jcompany'] . '</li>
+                        <li><i class="fas fa-dollar-sign"></i>' . $row['jsalary'] . '</li>
+                        <li><i class="fas fa-map-marker-alt"></i>' . $row['jlocation'] . '</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class='job-tittle'>
-
-                    <a href='job_details.php'>
-                        <h4 style='margin-bottom: 30px; margin-top:30px'>" . $row['jname'] . "</h4>
-                    </a>
-                    <ul>
-                        <li><i class='fas fa-hourglass-half'></i>" . $row['jtype'] . "</li>
-                        <li><i class='fas fa-building'></i>" . $row['jcompany'] . "</li>
-                        <li><i class='fas fa-dollar-sign'></i>" . $row['jsalary'] . "</li>
-                        <li><i class='fas fa-map-marker-alt'></i>" . $row['jlocation'] . "</li>
-                    </ul>
+                <div style="margin-top: 20px;">
+                    <a class="btn btn-danger" href="unapply.php?user_email=' . $user_profile . '&job_type=' . $row['jtype'] . '&job_name=' . $row['jname'] .
+                        '&job_salary=' . $row['jsalary'] . '&job_company=' . $row['jcompany'] . '&job_location=' . $row['jlocation'] . '">Unapply</a>
                 </div>
             </div>
-            <hr>
-        </div>";
+            ';
             echo $html;
         }
     }

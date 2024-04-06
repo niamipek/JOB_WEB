@@ -204,7 +204,7 @@
                                         </div>
                                         <!-- single-job-content -->
                                         <?php
-                                        include ("connection/connect_profile_jobposted.php");
+                                        include ("connection/connect_profile_jobapplied.php");
                                         ?>
                                     </div>
                                 </div>
