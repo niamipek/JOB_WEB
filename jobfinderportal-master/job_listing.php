@@ -172,66 +172,88 @@
                                         var company = $('#jcompany').val();
                                         var location = $('#jlocation').val();
                                         var jobName = $('#jname').val();
-                                        console.log($.trim(jobName));
-                                        if (company === '') {
-                                            $.ajax({
-                                                url: 'filter/emptyCompany.php', // Đường dẫn tới file PHP xử lý yêu cầu
-                                                type: 'POST',
-                                                data: {
-                                                    location: location
-                                                },
-                                                success: function(response) {
-                                                    $('#jobList').html(response); // Cập nhật danh sách công việc trên trang web
-                                                }
-                                            });
-                                        } else if (location === '') {
-                                            $.ajax({
-                                                url: 'filter/emptyLocation.php', // Đường dẫn tới file PHP xử lý yêu cầu
-                                                type: 'POST',
-                                                data: {
-                                                    company: company
-                                                },
-                                                success: function(response) {
-                                                    $('#jobList').html(response); // Cập nhật danh sách công việc trên trang web
-                                                }
-                                            });
+
+                                        if (jobName === '') {
+                                            if (company === '') {
+                                                $.ajax({
+                                                    url: 'filter/emptyCompany.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        location: location
+                                                    },
+                                                    success: function(response) {
+                                                        $('#jobList').html(response);
+                                                    }
+                                                });
+                                            } else if (location === '') {
+                                                $.ajax({
+                                                    url: 'filter/emptyLocation.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        company: company
+                                                    },
+                                                    success: function(response) {
+                                                        $('#jobList').html(response);
+                                                    }
+                                                });
+                                            } else {
+                                                $.ajax({
+                                                    url: 'filter/process.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        company: company,
+                                                        location: location
+                                                    },
+                                                    success: function(response) {
+                                                        $('#jobList').html(response);
+                                                    }
+                                                });
+                                            }
                                         } else {
-                                            $.ajax({
-                                                url: 'filter/process.php', // Đường dẫn tới file PHP xử lý yêu cầu
-                                                type: 'POST',
-                                                data: {
-                                                    company: company,
-                                                    location: location,
-
-                                                },
-                                                success: function(response) {
-                                                    $('#jobList').html(response); // Cập nhật danh sách công việc trên trang web
-                                                }
-                                            });
+                                            if ($.trim(company) !== '' && $.trim(location) !== '') {
+                                                $.ajax({
+                                                    url: 'filter/fulldata.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        company: company,
+                                                        location: location,
+                                                        jobName: jobName
+                                                    },
+                                                    success: function(response) {
+                                                        $('#jobList').html(response);
+                                                    }
+                                                });
+                                            } else if ($.trim(location) !== '') {
+                                                $.ajax({
+                                                    url: 'filter/haveJnameandJlocation.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        location: location,
+                                                        jobName: jobName
+                                                    },
+                                                    success: function(response) {
+                                                        $('#jobList').html(response);
+                                                    }
+                                                });
+                                            } else if ($.trim(company) !== '') {
+                                                $.ajax({
+                                                    url: 'filter/haveJnameandJcompany.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        company: company,
+                                                        jobName: jobName
+                                                    },
+                                                    success: function(response) {
+                                                        $('#jobList').html(response);
+                                                    }
+                                                });
+                                            }
                                         }
-
-
-                                        if ($.trim(jobName) !== '' && $.trim(company) !== '' && $.trim(location) !== '') {
-                                            $.ajax({
-                                                url: 'filter/fulldata.php',
-                                                type: 'POST',
-                                                data: {
-                                                    company: company,
-                                                    location: location,
-                                                    jobName: jobName
-                                                },
-                                                success: function(response) {
-                                                    $('#jobList').html(response);
-                                                }
-                                            });
-                                        }
-
-                                        if (jobName !== '') {
+                                        if (jobName !== '' && $.trim(company) === '' && $.trim(location) === '') {
                                             $.ajax({
                                                 url: 'filter/onlyJname.php',
                                                 type: 'POST',
                                                 data: {
-
                                                     jobName: jobName
                                                 },
                                                 success: function(response) {
@@ -239,37 +261,6 @@
                                                 }
                                             });
                                         }
-
-
-                                        if ($jobName !== '' && company !== '') {
-                                            $.ajax({
-                                                url: 'filter/haveJnameandJcompany.php',
-                                                type: 'POST',
-                                                data: {
-                                                    company: company,
-                                                    jobName: jobName
-                                                },
-                                                success: function(response) {
-                                                    $('#jobList').html(response);
-                                                }
-                                            });
-                                        }
-
-                                        if ($jobName !== '' && location !== '') {
-                                            $.ajax({
-                                                url: 'filter/haveJnameandJlocation.php',
-                                                type: 'POST',
-                                                data: {
-                                                    location: location,
-                                                    jobName: jobName
-                                                },
-                                                success: function(response) {
-                                                    $('#jobList').html(response);
-                                                }
-                                            });
-                                        }
-
-
                                     });
                                 });
                             </script>
