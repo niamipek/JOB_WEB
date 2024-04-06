@@ -1,94 +1,86 @@
 <?php
 session_start();
 
-$user = '';
-$uname = '';
+$jtype = '';
+$jname = '';
+$jsalary = '';
+$jcompany = '';
+$jlocation = '';
 $uemail = '';
-$uphone = '';
+
+$get_jtype = '';
+$get_jname = '';
+$get_jsalary = '';
+$get_jcompany = '';
+$get_jlocation = '';
+$get_uemail = '';
+
 $error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $uname = $_POST['uname'];
-    $uemail = $_POST['uemail'];
-    $uphone = $_POST['uphone'];
+    $jtype = $_POST['jtype'];
+    $jname = $_POST['jname'];
+    $jsalary = $_POST['jsalary'];
+    $jcompany = $_POST['jcompany'];
+    $jlocation = $_POST['jlocation'];
 
     $conn = new mysqli('localhost', 'root', '', 'job_web');
     if ($conn->connect_error) {
         die("Connection Failed: " . $conn->connect_error);
     } else {
         if ($_SESSION['user'] == 'admin') {
-            $user = $_GET['id'];
+            $get_jtype = $_GET['job_type'];
+            $get_jname = $_GET['job_name'];
+            $get_jsalary = $_GET['job_salary'];
+            $get_jcompany = $_GET['job_company'];
+            $get_jlocation = $_GET['job_location'];
+            $get_uemail = $_GET['user_email'];
 
-            $stmt_select_job = $conn->prepare("SELECT jtype, jname, jsalary, jcompany, jlocation FROM job WHERE uemail = ?");
-            $stmt_select_job->bind_param("s", $user);
-            $stmt_select_job->execute();
-            $stmt_select_job->store_result();
-            $stmt_select_job->bind_result($jtype, $jname, $jsalary, $jcompany, $jlocation);
 
-            // Xóa bản ghi từ bảng JOB có uemail = 'boithuy@gmail.com12'
-            $stmt_delete_job = $conn->prepare("DELETE FROM JOB WHERE uemail=?");
-            $stmt_delete_job->bind_param("s", $user);
-            $stmt_delete_job->execute();
-            $stmt_delete_job->close();
+            $sql = "UPDATE job SET jtype=?, jname=?, jsalary=?, jcompany=?, jlocation=?
+            WHERE jtype=? AND jname=? AND jsalary=? AND jcompany=? AND jlocation=?";
+            $stmt = $conn->prepare($sql);
 
-            // Cập nhật bản ghi trong bảng USER từ uemail = 'boithuy@gmail.com12' thành 'D@S'
-            $stmt_update_user = $conn->prepare("UPDATE USER SET uname = ?, uemail = ?, uphone = ? WHERE uemail=?");
-            $stmt_update_user->bind_param("ssss", $uname, $uemail, $uphone,  $user);
-            $stmt_update_user->execute();
-            $stmt_update_user->close();
+            // Bind parameters
+            $stmt->bind_param("ssssssssss", $jtype, $jname, $jsalary, $jcompany, $jlocation, $get_jtype, $get_jname, $get_jsalary, $get_jcompany, $get_jlocation);
 
-            // Thêm bản ghi mới vào bảng JOB
-            // Duyệt qua kết quả từ truy vấn SELECT
-            if ($stmt_select_job->fetch()) {
-                // Nếu có kết quả, tiến hành chèn giá trị vào bảng JOB
-                $stmt_insert_job = $conn->prepare("INSERT INTO JOB VALUES (?, ?, ?, ?, ?, ?)");
-                $stmt_insert_job->bind_param("ssssss", $jtype, $jname, $jsalary, $jcompany, $jlocation, $uemail);
-                $stmt_insert_job->execute();
-                $stmt_insert_job->close();
-            } else {
-                echo "Không tìm thấy dữ liệu trong bảng job cho uemail: $uemail";
-            }
+            $stmt->execute();
+
+            // Close statement and connection
+            $stmt->close();
 
             $conn->close();
 
-            header('Location: manageaccount.php');
+            header('Location: job_listing.php');
             exit();
         } else {
-            $user = $_SESSION['user'];
+            if ($_GET['user_email'] ===  $_SESSION['user']) {
+            $get_jtype = $_GET['job_type'];
+            $get_jname = $_GET['job_name'];
+            $get_jsalary = $_GET['job_salary'];
+            $get_jcompany = $_GET['job_company'];
+            $get_jlocation = $_GET['job_location'];
+            $get_uemail = $_GET['user_email'];
 
-            $stmt_select_job = $conn->prepare("SELECT jtype, jname, jsalary, jcompany, jlocation FROM job WHERE uemail = ?");
-            $stmt_select_job->bind_param("s", $user);
-            $stmt_select_job->execute();
-            $stmt_select_job->store_result();
-            $stmt_select_job->bind_result($jtype, $jname, $jsalary, $jcompany, $jlocation);
 
-            $stmt_delete_job = $conn->prepare("DELETE FROM JOB WHERE uemail=?");
-            $stmt_delete_job->bind_param("s", $user);
-            $stmt_delete_job->execute();
-            $stmt_delete_job->close();
+            $sql = "UPDATE job SET jtype=?, jname=?, jsalary=?, jcompany=?, jlocation=?
+            WHERE jtype=? AND jname=? AND jsalary=? AND jcompany=? AND jlocation=? AND uemail=?";
+            $stmt = $conn->prepare($sql);
 
-            $stmt_update_user = $conn->prepare("UPDATE USER SET uname = ?, uemail = ?, uphone = ? WHERE uemail=?");
-            $stmt_update_user->bind_param("ssss", $uname, $uemail, $uphone,  $user);
-            $stmt_update_user->execute();
-            $stmt_update_user->close();
+            // Bind parameters
+            $stmt->bind_param("sssssssssss", $jtype, $jname, $jsalary, $jcompany, $jlocation, $get_jtype, $get_jname, $get_jsalary, $get_jcompany, $get_jlocation, $get_uemail);
 
-            // Thêm bản ghi mới vào bảng JOB
-            // Duyệt qua kết quả từ truy vấn SELECT
-            if ($stmt_select_job->fetch()) {
-                // Nếu có kết quả, tiến hành chèn giá trị vào bảng JOB
-                $stmt_insert_job = $conn->prepare("INSERT INTO JOB VALUES (?, ?, ?, ?, ?, ?)");
-                $stmt_insert_job->bind_param("ssssss", $jtype, $jname, $jsalary, $jcompany, $jlocation, $uemail);
-                $stmt_insert_job->execute();
-                $stmt_insert_job->close();
-            } else {
-                echo "Không tìm thấy dữ liệu trong bảng job cho uemail: $uemail";
-            }
+            $stmt->execute();
+
+            // Close statement and connection
+            $stmt->close();
 
             $conn->close();
-
+            }
             header('Location: profile.php');
             exit();
         }
+
     }
 }
 ?>

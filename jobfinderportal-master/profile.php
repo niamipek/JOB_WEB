@@ -180,13 +180,32 @@
                                     <div class='col-xl-10'>
                                         <div class='col-sm-3'>
                                             <h6 class='d-flex align-items-center mb-3' style='margin-left: auto;'>
-                                                <i class='material-icons text-info mr-2'>Work History</i>
+                                                <i class='material-icons text-info mr-2'>Posted Job</i>
                                             </h6>
                                         </div>
                                         <!-- single-job-content -->
                                         <?php
-                                                include ("connection/connect_profile_workhistory.php");
-                                                ?>
+                                        include ("connection/connect_profile_jobposted.php");
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='card mb-3'>
+                            <div class='card-body'>
+
+                                <div class='row justify-content-center'>
+                                    <div class='col-xl-10'>
+                                        <div class='col-sm-3'>
+                                            <h6 class='d-flex align-items-center mb-3' style='margin-left: auto;'>
+                                                <i class='material-icons text-info mr-2'>Applied Job</i>
+                                            </h6>
+                                        </div>
+                                        <!-- single-job-content -->
+                                        <?php
+                                        include ("connection/connect_profile_jobapplied.php");
+                                        ?>
                                     </div>
                                 </div>
                             </div>
