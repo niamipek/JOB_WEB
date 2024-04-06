@@ -7,7 +7,7 @@ if ($conn->connect_error) {
 if (isset($_SESSION['user'])) {
     $user_profile = $_SESSION['user'];
     // Thực hiện truy vấn SQL sử dụng prepare statement để tránh SQL Injection
-    $stmt = $conn->prepare("SELECT jtype, jname, jsalary, jcompany, jlocation, uemail FROM job WHERE uemail = ?");
+    $stmt = $conn->prepare("SELECT jtype, jname, jsalary, jcompany, jlocation FROM apply WHERE uemail = ?");
     $stmt->bind_param("s", $user_profile);
     $stmt->execute();
     $result = $stmt->get_result();

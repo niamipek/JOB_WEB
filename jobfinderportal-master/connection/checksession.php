@@ -21,4 +21,4 @@ if (isset($_SESSION['user'])) {
 } else {
     echo '<li id="login"><a href="loginform.php">Login / Register</a></li>';
 }
-
+?>
