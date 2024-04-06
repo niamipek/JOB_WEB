@@ -123,7 +123,7 @@
 
                             <div class="contact-info-content">
                                 <h4>Address</h4>
-                                <p> 19 Nguyễn Hữu Thọ, Phường Tân Phong, Quận 7, TP. Hồ Chí Minh</p>
+                                <p>Quận 7, TP. Hồ Chí Minh</p>
                             </div>
                         </div>
 
