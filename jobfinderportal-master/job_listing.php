@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/stylechotextbox.css">
-    
+    <link rel="stylesheet" href="anjobcosan.css">
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -160,16 +161,18 @@
                                 </div>
 
                             </div>
-                            <div class="form-group col-md-3">
-                                <button id="submitBtn" style="margin-top:20px;width:200px" type="submit" class="btn btn-primary btn-block"> Search</button>
-                            </div>
-
+                            <form id="jobSearchForm">
+                                <div class="form-group col-md-3">
+                                    <button id="submitBtn" style="margin-top:20px;width:200px" type="submit" class="btn btn-primary btn-block"> Search</button>
+                                </div>
+                            </form>
                             <script>
                                 $(document).ready(function() {
                                     $('#submitBtn').click(function() {
                                         var company = $('#jcompany').val();
                                         var location = $('#jlocation').val();
-
+                                        var jobName = $('#jname').val();
+                                        console.log($.trim(jobName));
                                         if (company === '') {
                                             $.ajax({
                                                 url: 'filter/emptyCompany.php', // Đường dẫn tới file PHP xử lý yêu cầu
@@ -198,35 +201,79 @@
                                                 type: 'POST',
                                                 data: {
                                                     company: company,
-                                                    location: location
+                                                    location: location,
+
                                                 },
                                                 success: function(response) {
                                                     $('#jobList').html(response); // Cập nhật danh sách công việc trên trang web
                                                 }
                                             });
                                         }
+
+
+                                        if ($.trim(jobName) !== '' && $.trim(company) !== '' && $.trim(location) !== '') {
+                                            $.ajax({
+                                                url: 'filter/fulldata.php',
+                                                type: 'POST',
+                                                data: {
+                                                    company: company,
+                                                    location: location,
+                                                    jobName: jobName
+                                                },
+                                                success: function(response) {
+                                                    $('#jobList').html(response);
+                                                }
+                                            });
+                                        }
+
+                                        if (jobName !== '') {
+                                            $.ajax({
+                                                url: 'filter/onlyJname.php',
+                                                type: 'POST',
+                                                data: {
+
+                                                    jobName: jobName
+                                                },
+                                                success: function(response) {
+                                                    $('#jobList').html(response);
+                                                }
+                                            });
+                                        }
+
+
+                                        if ($jobName !== '' && company !== '') {
+                                            $.ajax({
+                                                url: 'filter/haveJnameandJcompany.php',
+                                                type: 'POST',
+                                                data: {
+                                                    company: company,
+                                                    jobName: jobName
+                                                },
+                                                success: function(response) {
+                                                    $('#jobList').html(response);
+                                                }
+                                            });
+                                        }
+
+                                        if ($jobName !== '' && location !== '') {
+                                            $.ajax({
+                                                url: 'filter/haveJnameandJlocation.php',
+                                                type: 'POST',
+                                                data: {
+                                                    location: location,
+                                                    jobName: jobName
+                                                },
+                                                success: function(response) {
+                                                    $('#jobList').html(response);
+                                                }
+                                            });
+                                        }
+
+
                                     });
                                 });
                             </script>
-                            <!-- test thử cái bảng -->
-
-
-                            <!-- test thử cái bảng -->
-
-
-                            <!-- single three -->
-
                         </div>
-                        <section class="featured-job-area">
-
-                            <div class="tg-wrap">
-                                <table id="jobTable" class="display" cellspacing="0" style="width:100%">
-                                    <thead style="font-weight: bold;" align="center">
-
-                                    </thead>
-
-                                </table>
-                            </div>
 
                     </div>
                     <div class="container">
@@ -234,28 +281,28 @@
 
 
                     </div>
-                    <div>
+                    <div class="featuredJob">
                         <!-- Featured_job_start -->
-                        <section class="featured-job-area">
-                            <div class="container">
-                                <?php
-                                include('connection/connection_job.php');
-                                ?>
-                            </div>
+
+                        <div class="container">
+                            <?php
+                            include('connection/connection_job.php');
+                            ?>
+                        </div>
                     </div>
+
                     <script>
                         $(document).ready(function() {
-                            $('#submitBtn').click(function() {
-                                // Your existing AJAX code
-
-                                // Hide the div with class 'featured-job-area'
-                                $('.featured-job-area').hide();
+                            $('#jobSearchForm').submit(function(event) {
+                                event.preventDefault(); // Ngăn chặn việc gửi biểu mẫu
+                                $('.featuredJob').css('display', 'none'); // Thêm thuộc tính style vào phần có class là featuredJob
                             });
                         });
                     </script>
                 </div>
             </div>
         </div>
+
 
     </main>
     <footer>
@@ -319,7 +366,7 @@
                                         <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative mail_part">
                                             <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = ' Email Address '">
                                             <div class="form-icon">
-                                                <button type="submit" name="Search" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/icon/form.png" alt=""></button>
+                                                <button type="submit" name="submit" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/icon/form.png" alt=""></button>
                                             </div>
                                             <div class="mt-10 info"></div>
                                         </form>
