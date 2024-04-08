@@ -104,37 +104,57 @@
 
         <div class="job-listing-area pt-120 pb-120">
             <div class="container">
-            <div class="col-12">  <div class="job-category-listing mb-50">
-    <div class="single-listing">
-      <div class="small-section-tittle2">
-        <h4>Job Name</h4>
-        <input type="text" name="jname" id="jname" placeholder="Enter job name">
-      </div>
-      <div class="small-section-tittle2">
-        <h4 style="margin-top: 10px;">Job Company</h4>
-        <div class="select-job-items2">
-          <select name="jcompany" id="jcompany">
-            <option value="">--Select Company--</option>
-            <?php echo $jcompany ?>
-          </select>
-        </div>
-      </div>
-      <div class="single-listing">
-        <div class="small-section-tittle2">
-          <h4 style="margin-top: 10px;">Job Location</h4>
-          <div class="select-job-items2">
-            <select name="jlocation" id="jlocation">
-              <option value="">--Select Location--</option>
-              <?php echo $jlocation ?>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-    <form id="jobSearchForm">
-      <div class="form-group">  <button id="submitBtn" style="margin-top:20px;width:100%;" type="submit" class="btn btn-primary btn-block">Search</button>
-      </div>
-    </form>
+                <div class="col-12">
+                    <div class="job-category-listing mb-50">
+                        <div class="single-listing">
+                            <div class="small-section-tittle2">
+                                <h4>Job Name</h4>
+                                <input type="text" name="jname" id="jname" placeholder="Enter job name">
+                            </div>
+                            <div class="small-section-tittle2">
+                                <h4 style="margin-top: 10px;">Job Company</h4>
+                                <?php
+                                $conn = new mysqli('localhost', 'root', '', 'job_web');
+                                $jcompany = '';
+                                $query = "SELECT jcompany FROM job GROUP BY jcompany ORDER BY jcompany ASC";
+                                $result = mysqli_query($conn, $query);
+                                while ($row = mysqli_fetch_array($result)) {
+                                    $jcompany .= '<option value="' . $row["jcompany"] . '">' . $row["jcompany"] . '</option>';
+                                }
+                                ?>
+                                <div class="select-job-items2">
+                                    <select name="jcompany" id="jcompany">
+                                        <option value="">--Select Company--</option>
+                                        <?php echo $jcompany ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="single-listing">
+                                <div class="small-section-tittle2">
+                                    <h4 style="margin-top: 10px;">Job Location</h4>
+                                    <?php
+                                    $conn = new mysqli('localhost', 'root', '', 'job_web');
+                                    $jlocation = '';
+                                    $query = "SELECT jlocation FROM job GROUP BY jlocation ORDER BY jlocation ASC";
+                                    $result = mysqli_query($conn, $query);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        $jlocation .= '<option value="' . $row["jlocation"] . '">' . $row["jlocation"] . '</option>';
+                                    }
+                                    ?>
+                                    <div class="select-job-items2">
+                                        <select name="jlocation" id="jlocation">
+                                            <option value="">--Select Location--</option>
+                                            <?php echo $jlocation ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <form id="jobSearchForm">
+                            <div class="form-group"> <button id="submitBtn" style="margin-top:20px;width:100%;"
+                                    type="submit" class="btn btn-danger btn-block">Search</button>
+                            </div>
+                        </form>
                         <script>
                             $(document).ready(function () {
                                 $('#submitBtn').click(function () {
