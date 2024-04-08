@@ -37,20 +37,20 @@
 							</select>
 						</div>
 						<div class="form-holder">
-							<input style="font-size: 20px;" id="jname" name="jname" type="text" placeholder="Job name" class="form-control">
+							<input style="font-size: 20px;" id="jname" name="jname" type="text" placeholder="Job name" class="form-control" required>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-holder">
-							<input style="font-size: 20px;" id="jsalary" name="jsalary" type="text" placeholder="Job salary ($)" class="form-control">
+							<input style="font-size: 20px;" id="jsalary" name="jsalary" type="text" placeholder="Job salary ($)" class="form-control" required>
 						</div>
 						<div class="form-holder">
-							<input style="font-size: 20px;" id="jcompany" name="jcompany" type="text" placeholder="Job company" class="form-control">
+							<input style="font-size: 20px;" id="jcompany" name="jcompany" type="text" placeholder="Job company" class="form-control" required>
 						</div>
 					</div>
 					<div class="form-row">
 						<div class="form-holder">
-							<input style="font-size: 20px;" id="jlocation" name="jlocation" type="text" placeholder="Job location" class="form-control">
+							<input style="font-size: 20px;" id="jlocation" name="jlocation" type="text" placeholder="Job location" class="form-control" required>
 						</div>
 
 					</div>
