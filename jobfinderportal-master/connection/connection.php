@@ -28,7 +28,7 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
             <div class="f-right">
-            <a class="btn btn-danger" href="edit.php?id=' . $row['uemail'] . '">Edit</a>
+            <a class="btn btn-danger" href="edit.php?id=' . $row['uemail'] . '">&nbsp;Edit&nbsp;&nbsp;&nbsp;</a>
             <a class="btn btn-danger" href="delete.php?id=' . $row['uemail'] . '">Delete</a>
                                     </div>
         </div>';

@@ -19,6 +19,6 @@ if (isset($_SESSION['user'])) {
         echo $html;
     }
 } else {
-    echo '<li id="login"><a href="loginform.php">Login / Register</a></li>';
+    echo '<li id="login"><a href="loginform.php">Login</a></li>';
 }
 ?>

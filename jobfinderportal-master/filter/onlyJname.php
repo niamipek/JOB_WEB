@@ -38,7 +38,7 @@ if ($result->num_rows > 0) {
                     </div>
                     <div class="f-right">
                         <a class="btn btn-danger" href="edit_job.php?user_email=' . $row['uemail'] . '&job_type=' . $row['jtype'] . '&job_name=' . $row['jname'] .
-                                        '&job_salary=' . $row['jsalary'] . '&job_company=' . $row['jcompany'] . '&job_location=' . $row['jlocation'] . '">Edit</a>
+                                        '&job_salary=' . $row['jsalary'] . '&job_company=' . $row['jcompany'] . '&job_location=' . $row['jlocation'] . '">&nbsp;Edit&nbsp;&nbsp;&nbsp;</a>
                         <a class="btn btn-danger" href="delete_job.php?user_email=' . $row['uemail']  . '&job_type=' . $row['jtype'] . '&job_name=' . $row['jname'] .
                                         '&job_salary=' . $row['jsalary'] . '&job_company=' . $row['jcompany'] . '&job_location=' . $row['jlocation'] . '">Delete</a>
                     </div>
