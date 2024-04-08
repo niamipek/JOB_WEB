@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/stylechotextbox.css">
+    <link rel="stylesheet" href="anjobcosan.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -63,7 +66,7 @@
                                             <li><a href="blog.php">Blog</a></li>
                                             <li><a href="contact.php">Contact</a></li>
                                             <?php
-                                            include ("connection/checksession.php");
+                                            include("connection/checksession.php");
                                             ?>
                                         </ul>
                                     </nav>
@@ -81,10 +84,10 @@
         <!-- Header End -->
     </header>
     <main>
+
         <!-- Hero Area Start-->
         <div class="slider-area ">
-            <div class="single-slider section-overly slider-height2 d-flex align-items-center"
-                data-background="assets/img/hero/about.jpg">
+            <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
@@ -98,205 +101,195 @@
         </div>
         <!-- Hero Area End -->
         <!-- Job List Area Start -->
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-        <div class="job-listing-area pt-120 pb-120">
+        <div class="job-listing-area pt-120 pb-120 ">
             <div class="container">
-                <div class="col-xl-3 col-lg-3 col-md-4">
-                    <div style="width: 1200px;" class="job-category-listing mb-50">
-                        <!-- single one -->
-                        <div class="single-listing">
-                            <div class="small-section-tittle2">
-                                <h4>Job Name</h4>
-                                <input  type="text" name="jname" id="jname" placeholder="Enter job name">
-                            </div>
-                            <div class="small-section-tittle2">
-                                <h4 style="margin-top: 10px;">Job Company</h4>
-                                <?php
-                                $conn = new mysqli('localhost', 'root', '', 'job_web');
-                                $jcompany = '';
-                                $query = "SELECT jcompany FROM job GROUP BY jcompany ORDER BY jcompany ASC";
-                                $result = mysqli_query($conn, $query);
-                                while ($row = mysqli_fetch_array($result)) {
-                                    $jcompany .= '<option value="' . $row["jcompany"] . '">' . $row["jcompany"] . '</option>';
-                                }
-                                ?>
-                            </div>
-                            <!-- Select job items start -->
-                            <div class="select-job-items2">
-                                <select name="jcompany" id="jcompany">
-                                    <option value="">--Select Company--</option>
-                                    <?php echo $jcompany ?>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- single two -->
-                        <div class="single-listing">
-                            <div class="small-section-tittle2">
-                                <h4 style="margin-top: 10px;">Job Location</h4>
-                                <?php
-                                $conn = new mysqli('localhost', 'root', '', 'job_web');
-                                $jlocation = '';
-                                $query = "SELECT jlocation FROM job GROUP BY jlocation ORDER BY jlocation ASC";
-                                $result = mysqli_query($conn, $query);
-                                while ($row = mysqli_fetch_array($result)) {
-                                    $jlocation .= '<option value="' . $row["jlocation"] . '">' . $row["jlocation"] . '</option>';
-                                }
-                                ?>
-                            </div>
-                            <!-- Select job items start -->
-                            <div class="select-job-items2">
-                                <select name="jlocation" id="jlocation">
-                                    <option value="">--Select Location--</option>
-                                    <?php echo $jlocation ?>
-                                </select>
-                            </div>
-
-                        </div>
-                        <form id="jobSearchForm">
-                            <div class="form-group col-md-3">
-                                <button id="submitBtn" style="margin-top:20px;width:200px" type="submit"
-                                    class="btn btn-primary btn-block"> Search</button>
-                            </div>
-                        </form>
-                        <script>
-                            $(document).ready(function () {
-                                $('#submitBtn').click(function () {
-                                    var company = $('#jcompany').val();
-                                    var location = $('#jlocation').val();
-                                    var jobName = $('#jname').val();
-
-                                    if (jobName === '') {
-                                        if (company === '') {
-                                            $.ajax({
-                                                url: 'filter/emptyCompany.php',
-                                                type: 'POST',
-                                                data: {
-                                                    location: location
-                                                },
-                                                success: function (response) {
-                                                    $('#jobList').html(response);
-                                                }
-                                            });
-                                        } else if (location === '') {
-                                            $.ajax({
-                                                url: 'filter/emptyLocation.php',
-                                                type: 'POST',
-                                                data: {
-                                                    company: company
-                                                },
-                                                success: function (response) {
-                                                    $('#jobList').html(response);
-                                                }
-                                            });
-                                        } else {
-                                            $.ajax({
-                                                url: 'filter/process.php',
-                                                type: 'POST',
-                                                data: {
-                                                    company: company,
-                                                    location: location
-                                                },
-                                                success: function (response) {
-                                                    $('#jobList').html(response);
-                                                }
-                                            });
-                                        }
-                                    } else {
-                                        if ($.trim(company) !== '' && $.trim(location) !== '') {
-                                            $.ajax({
-                                                url: 'filter/fulldata.php',
-                                                type: 'POST',
-                                                data: {
-                                                    company: company,
-                                                    location: location,
-                                                    jobName: jobName
-                                                },
-                                                success: function (response) {
-                                                    $('#jobList').html(response);
-                                                }
-                                            });
-                                        } else if ($.trim(location) !== '') {
-                                            $.ajax({
-                                                url: 'filter/haveJnameandJlocation.php',
-                                                type: 'POST',
-                                                data: {
-                                                    location: location,
-                                                    jobName: jobName
-                                                },
-                                                success: function (response) {
-                                                    $('#jobList').html(response);
-                                                }
-                                            });
-                                        } else if ($.trim(company) !== '') {
-                                            $.ajax({
-                                                url: 'filter/haveJnameandJcompany.php',
-                                                type: 'POST',
-                                                data: {
-                                                    company: company,
-                                                    jobName: jobName
-                                                },
-                                                success: function (response) {
-                                                    $('#jobList').html(response);
-                                                }
-                                            });
-                                        }
+                <div class="row">
+                    <!-- Left content -->
+                    <div class="col-xl-3 col-lg-3 col-md-4">
+                        <div style="width: 1200px;" class="job-category-listing mb-50">
+                            <!-- single one -->
+                            <div class="single-listing">
+                                <div class="small-section-tittle2">
+                                    <h4>Job Name</h4>
+                                    <input type="text" name="jname" id="jname" placeholder="Enter job name">
+                                </div>
+                                <div class="small-section-tittle2">
+                                    <h4 style="margin-top: 10px;">Job Company</h4>
+                                    <?php
+                                    $conn = new mysqli('localhost', 'root', '', 'job_web');
+                                    $jcompany = '';
+                                    $query = "SELECT jcompany FROM job GROUP BY jcompany ORDER BY jcompany ASC";
+                                    $result = mysqli_query($conn, $query);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        $jcompany .= '<option value="' . $row["jcompany"] . '">' . $row["jcompany"] . '</option>';
                                     }
-                                    if (jobName !== '' && $.trim(company) === '' && $.trim(location) === '') {
-                                        $.ajax({
-                                            url: 'filter/onlyJname.php',
-                                            type: 'POST',
-                                            data: {
-                                                jobName: jobName
-                                            },
-                                            success: function (response) {
-                                                $('#jobList').html(response);
+                                    ?>
+                                </div>
+                                <!-- Select job items start -->
+                                <div class="select-job-items2">
+                                    <select name="jcompany" id="jcompany">
+                                        <option value="">--Select Company--</option>
+                                        <?php echo $jcompany ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- single two -->
+                            <div class="single-listing">
+                                <div class="small-section-tittle2">
+                                    <h4 style="margin-top: 10px;">Job Location</h4>
+                                    <?php
+                                    $conn = new mysqli('localhost', 'root', '', 'job_web');
+                                    $jlocation = '';
+                                    $query = "SELECT jlocation FROM job GROUP BY jlocation ORDER BY jlocation ASC";
+                                    $result = mysqli_query($conn, $query);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        $jlocation .= '<option value="' . $row["jlocation"] . '">' . $row["jlocation"] . '</option>';
+                                    }
+                                    ?>
+                                </div>
+                                <!-- Select job items start -->
+                                <div class="select-job-items2">
+                                    <select name="jlocation" id="jlocation">
+                                        <option value="">--Select Location--</option>
+                                        <?php echo $jlocation ?>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <form id="jobSearchForm">
+                                <div class="form-group col-md-3">
+                                    <button id="submitBtn" style="margin-top:20px;width:200px" type="submit" class="btn btn-primary btn-block"> Search</button>
+                                </div>
+                            </form>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#submitBtn').click(function() {
+                                        var company = $('#jcompany').val();
+                                        var location = $('#jlocation').val();
+                                        var jobName = $('#jname').val();
+
+                                        if (jobName === '') {
+                                            if (company === '') {
+                                                $.ajax({
+                                                    url: 'filter/emptyCompany.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        location: location
+                                                    },
+                                                    success: function(response) {
+                                                        $('#jobList').html(response);
+                                                    }
+                                                });
+                                            } else if (location === '') {
+                                                $.ajax({
+                                                    url: 'filter/emptyLocation.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        company: company
+                                                    },
+                                                    success: function(response) {
+                                                        $('#jobList').html(response);
+                                                    }
+                                                });
+                                            } else {
+                                                $.ajax({
+                                                    url: 'filter/process.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        company: company,
+                                                        location: location
+                                                    },
+                                                    success: function(response) {
+                                                        $('#jobList').html(response);
+                                                    }
+                                                });
                                             }
-                                        });
-                                    }
+                                        } else {
+                                            if ($.trim(company) !== '' && $.trim(location) !== '') {
+                                                $.ajax({
+                                                    url: 'filter/fulldata.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        company: company,
+                                                        location: location,
+                                                        jobName: jobName
+                                                    },
+                                                    success: function(response) {
+                                                        $('#jobList').html(response);
+                                                    }
+                                                });
+                                            } else if ($.trim(location) !== '') {
+                                                $.ajax({
+                                                    url: 'filter/haveJnameandJlocation.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        location: location,
+                                                        jobName: jobName
+                                                    },
+                                                    success: function(response) {
+                                                        $('#jobList').html(response);
+                                                    }
+                                                });
+                                            } else if ($.trim(company) !== '') {
+                                                $.ajax({
+                                                    url: 'filter/haveJnameandJcompany.php',
+                                                    type: 'POST',
+                                                    data: {
+                                                        company: company,
+                                                        jobName: jobName
+                                                    },
+                                                    success: function(response) {
+                                                        $('#jobList').html(response);
+                                                    }
+                                                });
+                                            }
+                                        }
+                                        if (jobName !== '' && $.trim(company) === '' && $.trim(location) === '') {
+                                            $.ajax({
+                                                url: 'filter/onlyJname.php',
+                                                type: 'POST',
+                                                data: {
+                                                    jobName: jobName
+                                                },
+                                                success: function(response) {
+                                                    $('#jobList').html(response);
+                                                }
+                                            });
+                                        }
+                                    });
                                 });
-                            });
-                        </script>
+                            </script>
+                        </div>
+
                     </div>
+                    <div class="container">
+                        <div id="jobList"></div>
 
-                </div>
 
-                <div>
-                    <!-- Right content -->
-                    <div>
+                    </div>
+                    <div class="featuredJob">
                         <!-- Featured_job_start -->
                         <section class="featured-job-area">
-                            <div class="container">
-                                <div id="jobList"></div>
-                            </div>
+                        <div class="container">
+                            <?php
+                            include('connection/connection_job.php');
+                            ?>
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <!-- Right content -->
-                    <div>
-                        <!-- Featured_job_start -->
-                        <section class="featuredJob" class="featured-job-area">
-                            <div class="container">
-                                <?php
-                                include ('connection/connection_job.php');
-                                ?>
-                            </div>
-                    </div>
-                </div>
-
-                <script>
-                    $(document).ready(function () {
-                        $('#jobSearchForm').submit(function (event) {
-                            event.preventDefault(); // Ngăn chặn việc gửi biểu mẫu
-                            $('.featuredJob').css('display', 'none'); // Thêm thuộc tính style vào phần có class là featuredJob
+                    <script>
+                        $(document).ready(function() {
+                            $('#jobSearchForm').submit(function(event) {
+                                event.preventDefault(); // Ngăn chặn việc gửi biểu mẫu
+                                $('.featuredJob').css('display', 'none'); // Thêm thuộc tính style vào phần có class là featuredJob
+                            });
                         });
-                    });
-                </script>
+                    </script>
+                </div>
             </div>
         </div>
+
+
     </main>
     <footer>
         <!-- Footer Start-->
@@ -309,8 +302,7 @@
                                 <div class="footer-tittle">
                                     <h4>About Us</h4>
                                     <div class="footer-pera">
-                                        <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so
-                                            behold.</p>
+                                        <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so behold.</p>
                                     </div>
                                 </div>
                             </div>
@@ -357,17 +349,10 @@
                                 <!-- Form -->
                                 <div class="footer-form">
                                     <div id="mc_embed_signup">
-                                        <form target="_blank"
-                                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                            method="get" class="subscribe_form relative mail_part">
-                                            <input type="email" name="email" id="newsletter-form-email"
-                                                placeholder="Email Address" class="placeholder hide-on-focus"
-                                                onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = ' Email Address '">
+                                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative mail_part">
+                                            <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = ' Email Address '">
                                             <div class="form-icon">
-                                                <button type="submit" name="submit" id="newsletter-submit"
-                                                    class="email_icon newsletter-submit button-contactForm"><img
-                                                        src="assets/img/icon/form.png" alt=""></button>
+                                                <button type="submit" name="submit" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm"><img src="assets/img/icon/form.png" alt=""></button>
                                             </div>
                                             <div class="mt-10 info"></div>
                                         </form>
@@ -415,12 +400,10 @@
                         <div class="col-xl-10 col-lg-10 ">
                             <div class="footer-copy-right">
                                 <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    <script>document.write(new Date().getFullYear());</script> All rights reserved |
-                                    This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                        href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </p>
+                                    Copyright &copy;<script>
+                                        document.write(new Date().getFullYear());
+                                    </script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                             </div>
                         </div>
                         <div class="col-xl-2 col-lg-2">
